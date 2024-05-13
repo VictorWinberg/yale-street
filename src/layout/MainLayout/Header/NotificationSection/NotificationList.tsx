@@ -20,7 +20,7 @@ import Chip from '@/ui-component/extended/Chip';
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
-import User1 from 'assets/images/users/user-round.svg';
+import User1 from '@/assets/images/users/user-round.svg';
 
 interface ListItemWrapperProps {
   children: React.ReactNode;
