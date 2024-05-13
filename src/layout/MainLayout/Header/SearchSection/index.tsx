@@ -12,6 +12,7 @@ import Popper from '@mui/material/Popper';
 
 // third-party
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
+import { PopupState as PopupStateType } from 'material-ui-popup-state/hooks';
 
 // project imports
 import Transitions from '@/ui-component/extended/Transitions';
@@ -23,7 +24,7 @@ interface HeaderAvatarProps extends AvatarProps {
   children: React.ReactNode;
 }
 
-const HeaderAvatar = forwardRef(({ children, ...others }: HeaderAvatarProps, ref) => {
+const HeaderAvatar = forwardRef(({ children, ...others }: HeaderAvatarProps, ref: React.Ref<HTMLDivElement>) => {
   const theme = useTheme();
 
   return (
@@ -52,7 +53,7 @@ const HeaderAvatar = forwardRef(({ children, ...others }: HeaderAvatarProps, ref
 interface MobileSearchProps {
   value: string;
   setValue: (value: string) => void;
-  popupState: typeof PopupState;
+  popupState: PopupStateType;
 }
 
 const MobileSearch = ({ value, setValue, popupState }: MobileSearchProps) => {
@@ -124,7 +125,7 @@ const SearchSection = () => {
               >
                 {({ TransitionProps }) => (
                   <>
-                    <Transitions type="zoom" {...TransitionProps} sx={{ transformOrigin: 'center left' }}>
+                    <Transitions type="zoom" {...TransitionProps}>
                       <Card sx={{ bgcolor: 'background.default', border: 0, boxShadow: 'none' }}>
                         <Box sx={{ p: 2 }}>
                           <Grid container alignItems="center" justifyContent="space-between">

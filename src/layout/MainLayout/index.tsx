@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import AppBar from '@mui/material/AppBar';
@@ -11,15 +10,19 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { CssBaseline, styled, useTheme } from '@mui/material';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Customization from '../Customization';
 import Breadcrumbs from '@/ui-component/extended/Breadcrumbs';
 import { SET_MENU } from '@/store/actions';
 import { drawerWidth } from '@/store/constant';
 
 // assets
 import { IconChevronRight } from '@tabler/icons-react';
+import { useAppStore } from '@/store';
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })(({ theme, open }) => ({
+interface MainProps {
+  open: boolean;
+}
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })<MainProps>(({ theme, open }) => ({
   ...theme.typography.mainContent,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
@@ -55,13 +58,14 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && pr
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = () => {
+  const [state, dispatch] = useAppStore();
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
   // Handle left drawer
-  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  const dispatch = useDispatch();
+  const leftDrawerOpened = state.opened;
   const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
+    dispatch({ type: SET_MENU, payload: !leftDrawerOpened });
   };
 
   return (
@@ -89,10 +93,9 @@ const MainLayout = () => {
       {/* main content */}
       <Main theme={theme} open={leftDrawerOpened}>
         {/* breadcrumb */}
-        <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
+        <Breadcrumbs separator={IconChevronRight} icon title rightAlign />
         <Outlet />
       </Main>
-      <Customization />
     </Box>
   );
 };

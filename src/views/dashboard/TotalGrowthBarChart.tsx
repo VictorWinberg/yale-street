@@ -48,7 +48,7 @@ const TotalGrowthBarChart = ({ isLoading }: TotalGrowthBarChartProps) => {
   const divider = theme.palette.divider;
   const grey500 = theme.palette.grey[500];
 
-  const primary200 = theme.palette.primary[200];
+  const primary200 = theme.palette.primary.light;
   const primaryDark = theme.palette.primary.dark;
   const secondaryMain = theme.palette.secondary.main;
   const secondaryLight = theme.palette.secondary.light;

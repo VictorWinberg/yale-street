@@ -11,10 +11,10 @@ import Typography from '@mui/material/Typography';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project import
-import navigation, { MenuItem } from '@/menu-items';
+import navigation, { MenuItem } from '@/layout/menu-items';
 
 // assets
-import { Icon, IconChevronRight, IconTallymark1 } from '@tabler/icons-react';
+import { Icon, IconChevronRight } from '@tabler/icons-react';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
@@ -129,7 +129,7 @@ const Breadcrumbs = ({
 
   // item separator
   const SeparatorIcon = separator;
-  const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size="16px" /> : <IconTallymark1 stroke={1.5} size="16px" />;
+  const separatorIcon = <SeparatorIcon stroke={1.5} size="16px" />;
 
   let mainContent;
   let itemContent;

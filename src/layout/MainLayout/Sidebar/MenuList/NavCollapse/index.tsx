@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // material-ui
@@ -17,7 +16,7 @@ import NavItem from '../NavItem';
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
-import { MenuItem } from '@/menu-items';
+import { MenuItem } from '@/layout/menu-items';
 
 // ==============================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||============================== //
 
@@ -28,7 +27,6 @@ interface NavCollapseProps {
 
 const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -37,8 +35,8 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const handleClick = () => {
     setOpen(!open);
     setSelected(!selected ? menu.id : null);
-    if (menu?.id !== 'authentication') {
-      navigate(menu.children[0]?.url);
+    if (menu.children?.[0]?.id === 'default') {
+      navigate(menu.children[0].url!);
     }
   };
 
@@ -88,7 +86,7 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   });
 
   const Icon = menu.icon;
-  const menuIcon = menu.icon ? (
+  const menuIcon = Icon ? (
     <Icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
   ) : (
     <FiberManualRecordIcon
@@ -104,7 +102,7 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
     <>
       <ListItemButton
         sx={{
-          borderRadius: `${customization.borderRadius}px`,
+          borderRadius: '12px',
           mb: 0.5,
           alignItems: 'flex-start',
           backgroundColor: level > 1 ? 'transparent !important' : 'inherit',

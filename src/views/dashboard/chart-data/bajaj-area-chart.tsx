@@ -1,6 +1,8 @@
+import { Props as ChartProps } from 'react-apexcharts';
+
 // ==============================|| DASHBOARD - BAJAJ AREA CHART ||============================== //
 
-const chartData = {
+const chartData: ChartProps = {
   type: 'area',
   height: 95,
   options: {

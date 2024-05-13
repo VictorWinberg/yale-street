@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -68,7 +68,7 @@ const NotificationSection = () => {
   };
 
   const handleClose = (event: MouseEvent | TouchEvent) => {
-    if (anchorRef.current?.contains(event.target)) {
+    if (anchorRef.current?.contains(event.target as Node)) {
       return;
     }
     setOpen(false);
@@ -77,12 +77,12 @@ const NotificationSection = () => {
   const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
+      anchorRef.current?.focus();
     }
     prevOpen.current = open;
   }, [open]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (event?.target.value) setValue(event?.target.value);
   };
 
@@ -143,7 +143,7 @@ const NotificationSection = () => {
           <Transitions position={matchesXs ? 'top' : 'top-right'} in={open} {...TransitionProps}>
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
+                <MainCard border={false} elevation={16} cardContent={false} boxShadow shadow={theme.shadows[16]}>
                   <Grid container direction="column" spacing={2}>
                     <Grid item xs={12}>
                       <Grid container alignItems="center" justifyContent="space-between" sx={{ pt: 2, px: 2 }}>

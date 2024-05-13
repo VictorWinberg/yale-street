@@ -5,7 +5,6 @@ import Card, { CardProps } from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
 
 // project-import
 
@@ -17,13 +16,11 @@ const headerSX = {
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
 export interface MainCardProps extends CardProps {
-  title?: React.ReactNode;
+  title?: string;
   border?: boolean;
   boxShadow?: boolean;
   children: React.ReactNode;
-  content?: boolean;
-  contentClass?: string;
-  contentSX?: object;
+  cardContent?: boolean;
   darkTitle?: boolean;
   secondary?: React.ReactNode;
   shadow?: string | number;
@@ -32,21 +29,8 @@ export interface MainCardProps extends CardProps {
 
 const MainCard = React.forwardRef(
   (
-    {
-      border = false,
-      boxShadow,
-      children,
-      content = true,
-      contentClass = '',
-      contentSX = {},
-      darkTitle,
-      secondary,
-      shadow,
-      sx = {},
-      title,
-      ...others
-    }: MainCardProps,
-    ref
+    { border = false, boxShadow, children, cardContent = true, secondary, shadow, sx = {}, title, ...others }: MainCardProps,
+    ref: React.Ref<HTMLDivElement>
   ) => {
     return (
       <Card
@@ -62,19 +46,14 @@ const MainCard = React.forwardRef(
         }}
       >
         {/* card header and action */}
-        {!darkTitle && title && <CardHeader sx={headerSX} title={title} action={secondary} />}
-        {darkTitle && title && <CardHeader sx={headerSX} title={<Typography variant="h3">{title}</Typography>} action={secondary} />}
+        {title && <CardHeader sx={headerSX} title={title} action={secondary} />}
 
         {/* content & header divider */}
         {title && <Divider />}
 
         {/* card content */}
-        {content && (
-          <CardContent sx={contentSX} className={contentClass}>
-            {children}
-          </CardContent>
-        )}
-        {!content && children}
+        {cardContent && <CardContent>{children}</CardContent>}
+        {!cardContent && children}
       </Card>
     );
   }

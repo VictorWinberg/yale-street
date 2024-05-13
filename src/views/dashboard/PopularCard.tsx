@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 // material-ui
 import Avatar from '@mui/material/Avatar';
@@ -30,9 +30,9 @@ interface PopularCardProps {
 }
 
 const PopularCard = ({ isLoading }: PopularCardProps) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event: MouseEvent) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -45,7 +45,7 @@ const PopularCard = ({ isLoading }: PopularCardProps) => {
       {isLoading ? (
         <SkeletonPopularCard />
       ) : (
-        <MainCard content={false}>
+        <MainCard cardContent={false}>
           <CardContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
@@ -57,7 +57,7 @@ const PopularCard = ({ isLoading }: PopularCardProps) => {
                     <MoreHorizOutlinedIcon
                       fontSize="small"
                       sx={{
-                        color: 'primary.200',
+                        color: 'primary.light',
                         cursor: 'pointer'
                       }}
                       aria-controls="menu-popular-card"

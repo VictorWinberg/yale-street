@@ -28,7 +28,7 @@ function LinearProgressWithLabel({ value, ...others }: LinearProgressWithLabelPr
       <Grid item>
         <Grid container justifyContent="space-between">
           <Grid item>
-            <Typography variant="h6" sx={{ color: 'primary.800' }}>
+            <Typography variant="h6" sx={{ color: 'primary.dark' }}>
               Progress
             </Typography>
           </Grid>
@@ -77,7 +77,7 @@ const MenuCard = () => {
           position: 'absolute',
           width: 157,
           height: 157,
-          bgcolor: 'primary.200',
+          bgcolor: 'primary.light',
           borderRadius: '50%',
           top: -105,
           right: -96
@@ -105,7 +105,7 @@ const MenuCard = () => {
             <ListItemText
               sx={{ mt: 0 }}
               primary={
-                <Typography variant="subtitle1" sx={{ color: 'primary.800' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.dark' }}>
                   Get Extra Space
                 </Typography>
               }

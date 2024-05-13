@@ -19,7 +19,7 @@ interface TransitionsProps extends TransitionProps {
 }
 
 const Transitions = React.forwardRef(
-  ({ children, position = 'top-left', type = 'grow', direction = 'up', ...others }: TransitionsProps, ref) => {
+  ({ children, position = 'top-left', type = 'grow', direction = 'up', ...others }: TransitionsProps, ref: React.Ref<unknown>) => {
     let positionSX = {
       transformOrigin: '0 0 0'
     };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -32,7 +32,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
   const theme = useTheme();
 
   const [timeValue, setTimeValue] = React.useState(false);
-  const handleChangeTime = (event, newValue) => {
+  const handleChangeTime = (_event: MouseEvent, newValue: boolean) => {
     setTimeValue(newValue);
   };
 
@@ -43,7 +43,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
       ) : (
         <MainCard
           border={false}
-          content={false}
+          cardContent={false}
           sx={{
             bgcolor: 'primary.dark',
             color: '#fff',
@@ -58,7 +58,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.palette.primary[800],
+              background: theme.palette.primary.dark,
               borderRadius: '50%',
               top: { xs: -105, sm: -85 },
               right: { xs: -140, sm: -95 }
@@ -68,7 +68,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.palette.primary[800],
+              background: theme.palette.primary.dark,
               borderRadius: '50%',
               top: { xs: -155, sm: -125 },
               right: { xs: -70, sm: -15 },
@@ -86,7 +86,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
                       sx={{
                         ...theme.typography.commonAvatar,
                         ...theme.typography.largeAvatar,
-                        bgcolor: 'primary.800',
+                        bgcolor: 'primary.dark',
                         color: '#fff',
                         mt: 1
                       }}
@@ -132,7 +132,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
                           sx={{
                             ...theme.typography.smallAvatar,
                             cursor: 'pointer',
-                            bgcolor: 'primary.200',
+                            bgcolor: 'primary.light',
                             color: 'primary.dark'
                           }}
                         >
@@ -144,7 +144,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
                           sx={{
                             fontSize: '1rem',
                             fontWeight: 500,
-                            color: 'primary.200'
+                            color: 'primary.light'
                           }}
                         >
                           Total Order

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
+import { Theme } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -17,7 +18,7 @@ import AuthFooter from '@/ui-component/cards/AuthFooter';
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
-  const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const downMD = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
     <AuthWrapper1>

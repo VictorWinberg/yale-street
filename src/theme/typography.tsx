@@ -1,11 +1,13 @@
+import { TypographyOptions, TypographyStyleOptions } from '@mui/material/styles/createTypography';
+
+import { ThemeOptionProps } from '.';
+
 /**
  * Typography used in theme
- * @param {JsonObject} theme theme customization object
  */
-
-export default function themeTypography(theme) {
+export default function themeTypography(theme: ThemeOptionProps): TypographyOptions {
   return {
-    fontFamily: theme?.customization?.fontFamily,
+    fontFamily: "'Poppins', sans-serif",
     h6: {
       fontWeight: 500,
       color: theme.heading,
@@ -71,7 +73,6 @@ export default function themeTypography(theme) {
       '& > label': {
         top: 23,
         left: 0,
-        color: theme.grey500,
         '&[data-shrink="false"]': {
           top: 5
         }
@@ -94,7 +95,7 @@ export default function themeTypography(theme) {
       padding: '20px',
       marginTop: '88px',
       marginRight: '20px',
-      borderRadius: `${theme?.customization?.borderRadius}px`
+      borderRadius: '12px'
     },
     menuCaption: {
       fontSize: '0.875rem',
@@ -130,4 +131,42 @@ export default function themeTypography(theme) {
       fontSize: '1.5rem'
     }
   };
+}
+
+declare module '@mui/material' {
+  interface TypographyPropsVariantOverrides {
+    customInput: true;
+    mainContent: true;
+    menuCaption: true;
+    subMenuCaption: true;
+    commonAvatar: true;
+    smallAvatar: true;
+    mediumAvatar: true;
+    largeAvatar: true;
+  }
+}
+
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    customInput: TypographyStyleOptions;
+    mainContent: TypographyStyleOptions;
+    menuCaption: TypographyStyleOptions;
+    subMenuCaption: TypographyStyleOptions;
+    commonAvatar: TypographyStyleOptions;
+    smallAvatar: TypographyStyleOptions;
+    mediumAvatar: TypographyStyleOptions;
+    largeAvatar: TypographyStyleOptions;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    customInput?: TypographyStyleOptions;
+    mainContent?: TypographyStyleOptions;
+    menuCaption?: TypographyStyleOptions;
+    subMenuCaption?: TypographyStyleOptions;
+    commonAvatar?: TypographyStyleOptions;
+    smallAvatar?: TypographyStyleOptions;
+    mediumAvatar?: TypographyStyleOptions;
+    largeAvatar?: TypographyStyleOptions;
+  }
 }

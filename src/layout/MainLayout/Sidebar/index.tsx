@@ -22,10 +22,9 @@ import { drawerWidth } from '@/store/constant';
 interface SidebarProps {
   drawerOpen: boolean;
   drawerToggle: () => void;
-  window: Window;
 }
 
-const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
+const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -64,12 +63,9 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
     </>
   );
 
-  const container = window !== undefined ? () => window.document.body : undefined;
-
   return (
     <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
       <Drawer
-        container={container}
         variant={matchUpMd ? 'persistent' : 'temporary'}
         anchor="left"
         open={drawerOpen}

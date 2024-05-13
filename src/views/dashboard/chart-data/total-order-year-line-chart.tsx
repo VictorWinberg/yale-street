@@ -1,6 +1,8 @@
+import { Props as ChartProps } from 'react-apexcharts';
+
 // ==============================|| DASHBOARD - TOTAL ORDER YEAR CHART ||============================== //
 
-const chartData = {
+const chartData: ChartProps = {
   type: 'line',
   height: 90,
   options: {

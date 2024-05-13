@@ -79,16 +79,10 @@ const UIColor = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={2}>
-                <ColorBox bgcolor="primary.200" data={{ label: 'Blue-200', color: theme.palette.primary[200] }} title="primary[200]" dark />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={2}>
                 <ColorBox bgcolor="primary.main" data={{ label: 'Blue-500', color: theme.palette.primary.main }} title="primary.main" />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={2}>
                 <ColorBox bgcolor="primary.dark" data={{ label: 'Blue-600', color: theme.palette.primary.dark }} title="primary.dark" />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={2}>
-                <ColorBox bgcolor="primary.800" data={{ label: 'Blue-800', color: theme.palette.primary[800] }} title="primary[800]" />
               </Grid>
             </Grid>
           </SubCard>
@@ -106,14 +100,6 @@ const UIColor = () => {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={2}>
                 <ColorBox
-                  bgcolor="secondary.200"
-                  data={{ label: 'DeepPurple-200', color: theme.palette.secondary[200] }}
-                  title="secondary[200]"
-                  dark
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={2}>
-                <ColorBox
                   bgcolor="secondary.main"
                   data={{ label: 'DeepPurple-500', color: theme.palette.secondary.main }}
                   title="secondary.main"
@@ -124,13 +110,6 @@ const UIColor = () => {
                   bgcolor="secondary.dark"
                   data={{ label: 'DeepPurple-600', color: theme.palette.secondary.dark }}
                   title="secondary.dark"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={2}>
-                <ColorBox
-                  bgcolor="secondary.800"
-                  data={{ label: 'DeepPurple-800', color: theme.palette.secondary[800] }}
-                  title="secondary[800]"
                 />
               </Grid>
             </Grid>
@@ -146,9 +125,6 @@ const UIColor = () => {
                   title="success.light"
                   dark
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={2}>
-                <ColorBox bgcolor="success.200" data={{ label: 'Green-A200', color: theme.palette.success[200] }} title="success[200]" />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={2}>
                 <ColorBox bgcolor="success.main" data={{ label: 'Green-A400', color: theme.palette.success.main }} title="success.main" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -31,9 +31,9 @@ interface EarningCardProps {
 const EarningCard = ({ isLoading }: EarningCardProps) => {
   const theme = useTheme();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event: MouseEvent) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -48,7 +48,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
       ) : (
         <MainCard
           border={false}
-          content={false}
+          cardContent={false}
           sx={{
             bgcolor: 'secondary.dark',
             color: '#fff',
@@ -59,7 +59,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.palette.secondary[800],
+              background: theme.palette.secondary.dark,
               borderRadius: '50%',
               top: { xs: -105, sm: -85 },
               right: { xs: -140, sm: -95 }
@@ -69,7 +69,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.palette.secondary[800],
+              background: theme.palette.secondary.dark,
               borderRadius: '50%',
               top: { xs: -155, sm: -125 },
               right: { xs: -70, sm: -15 },
@@ -87,7 +87,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                       sx={{
                         ...theme.typography.commonAvatar,
                         ...theme.typography.largeAvatar,
-                        bgcolor: 'secondary.800',
+                        bgcolor: 'secondary.dark',
                         mt: 1
                       }}
                     >
@@ -101,7 +101,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                         ...theme.typography.commonAvatar,
                         ...theme.typography.mediumAvatar,
                         bgcolor: 'secondary.dark',
-                        color: 'secondary.200',
+                        color: 'secondary.light',
                         zIndex: 1
                       }}
                       aria-controls="menu-earning-card"
@@ -152,7 +152,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                       sx={{
                         cursor: 'pointer',
                         ...theme.typography.smallAvatar,
-                        bgcolor: 'secondary.200',
+                        bgcolor: 'secondary.light',
                         color: 'secondary.dark'
                       }}
                     >
@@ -166,7 +166,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                   sx={{
                     fontSize: '1rem',
                     fontWeight: 500,
-                    color: 'secondary.200'
+                    color: 'secondary.light'
                   }}
                 >
                   Total Earning

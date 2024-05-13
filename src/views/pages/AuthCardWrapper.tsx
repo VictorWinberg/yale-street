@@ -20,7 +20,7 @@ const AuthCardWrapper = ({ children, ...other }: AuthCardWrapperProps) => (
         flexBasis: '50%'
       }
     }}
-    content={false}
+    cardContent={false}
     {...other}
   >
     <Box sx={{ p: { xs: 2, sm: 3, xl: 5 } }}>{children}</Box>

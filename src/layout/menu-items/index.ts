@@ -16,6 +16,7 @@ export interface MenuItem {
   breadcrumbs?: boolean;
   target?: boolean;
   external?: boolean;
+  disabled?: boolean;
   children?: MenuItem[];
 }
 

@@ -10,39 +10,25 @@ import Typography from '@mui/material/Typography';
 // ==============================|| CUSTOM SUB CARD ||============================== //
 
 interface SubCardProps extends CardProps {
+  title: string;
   children: React.ReactNode;
-  content?: boolean;
-  contentClass?: string;
-  contentSX?: object;
-  darkTitle?: boolean;
-  secondary?: React.ReactNode;
-  sx?: object;
-  title: React.ReactNode;
 }
 
-const SubCard = React.forwardRef(
-  ({ children, content = true, contentClass, darkTitle, secondary, sx = {}, contentSX = {}, title, ...others }: SubCardProps, ref) => {
-    const defaultShadow = '0 2px 14px 0 rgb(32 40 45 / 8%)';
+const SubCard = React.forwardRef(({ title, children, ...others }: SubCardProps, ref: React.Ref<HTMLDivElement>) => {
+  const defaultShadow = '0 2px 14px 0 rgb(32 40 45 / 8%)';
 
-    return (
-      <Card ref={ref} sx={{ border: '1px solid', borderColor: 'divider', ':hover': { boxShadow: defaultShadow }, ...sx }} {...others}>
-        {/* card header and action */}
-        {!darkTitle && title && <CardHeader sx={{ p: 2.5 }} title={<Typography variant="h5">{title}</Typography>} action={secondary} />}
-        {darkTitle && title && <CardHeader sx={{ p: 2.5 }} title={<Typography variant="h4">{title}</Typography>} action={secondary} />}
+  return (
+    <Card ref={ref} sx={{ border: '1px solid', borderColor: 'divider', ':hover': { boxShadow: defaultShadow } }} {...others}>
+      {/* card header and action */}
+      {title && <CardHeader sx={{ p: 2.5 }} title={<Typography variant="h5">{title}</Typography>} />}
 
-        {/* content & header divider */}
-        {title && <Divider />}
+      {/* content & header divider */}
+      {title && <Divider />}
 
-        {/* card content */}
-        {content && (
-          <CardContent sx={{ p: 2.5, ...contentSX }} className={contentClass || ''}>
-            {children}
-          </CardContent>
-        )}
-        {!content && children}
-      </Card>
-    );
-  }
-);
+      {/* card content */}
+      <CardContent sx={{ p: 2.5 }}>{children}</CardContent>
+    </Card>
+  );
+});
 
 export default SubCard;

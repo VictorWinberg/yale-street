@@ -5,7 +5,7 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import { MenuItem } from '@/menu-items';
+import { MenuItem } from '@/layout/menu-items';
 import NavItem from '../NavItem';
 import NavCollapse from '../NavCollapse';
 

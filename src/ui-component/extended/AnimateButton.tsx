@@ -25,7 +25,7 @@ const AnimateButton = React.forwardRef(
         tap: 0.9
       }
     }: AnimateButtonProps,
-    ref
+    ref: React.Ref<HTMLDivElement>
   ) => {
     let offset1;
     let offset2;
