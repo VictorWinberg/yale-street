@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -8,14 +6,24 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import SubCard from 'ui-component/cards/SubCard';
-import MainCard from 'ui-component/cards/MainCard';
-import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
-import { gridSpacing } from 'store/constant';
+import SubCard from '@/ui-component/cards/SubCard';
+import MainCard from '@/ui-component/cards/MainCard';
+import SecondaryAction from '@/ui-component/cards/CardSecondaryAction';
+import { gridSpacing } from '@/store/constant';
 
 // ===============================|| COLOR BOX ||=============================== //
 
-const ColorBox = ({ bgcolor, title, data, dark }) => (
+interface ColorBoxProps {
+  bgcolor: string;
+  title?: string;
+  data: {
+    label: string;
+    color: string;
+  };
+  dark?: boolean;
+}
+
+const ColorBox = ({ bgcolor, title, data, dark }: ColorBoxProps) => (
   <>
     <Card sx={{ mb: 3 }}>
       <Box
@@ -50,13 +58,6 @@ const ColorBox = ({ bgcolor, title, data, dark }) => (
     )}
   </>
 );
-
-ColorBox.propTypes = {
-  bgcolor: PropTypes.string,
-  title: PropTypes.string,
-  data: PropTypes.object.isRequired,
-  dark: PropTypes.bool
-};
 
 // ===============================|| UI COLOR ||=============================== //
 

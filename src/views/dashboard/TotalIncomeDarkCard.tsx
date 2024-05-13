@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
@@ -11,8 +9,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
+import MainCard from '@/ui-component/cards/MainCard';
+import TotalIncomeCard from '@/ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
@@ -47,7 +45,11 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ==============================|| DASHBOARD - TOTAL INCOME DARK CARD ||============================== //
 
-const TotalIncomeDarkCard = ({ isLoading }) => {
+interface TotalIncomeDarkCardProps {
+  isLoading: boolean;
+}
+
+const TotalIncomeDarkCard = ({ isLoading }: TotalIncomeDarkCardProps) => {
   const theme = useTheme();
 
   return (
@@ -92,10 +94,6 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
       )}
     </>
   );
-};
-
-TotalIncomeDarkCard.propTypes = {
-  isLoading: PropTypes.bool
 };
 
 export default TotalIncomeDarkCard;

@@ -1,12 +1,13 @@
 // assets
 import { IconDashboard } from '@tabler/icons-react';
+import { MenuItem } from '.';
 
 // constant
 const icons = { IconDashboard };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
-const dashboard = {
+const dashboard: MenuItem = {
   id: 'dashboard',
   title: 'Dashboard',
   type: 'group',

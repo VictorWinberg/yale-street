@@ -1,12 +1,16 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
-import MuiChip from '@mui/material/Chip';
+import MuiChip, { ChipProps as MUIChipProps } from '@mui/material/Chip';
 
 // ==============================|| CHIP ||============================== //
 
-const Chip = ({ chipcolor, disabled, sx = {}, variant, ...others }) => {
+interface ChipProps extends MUIChipProps {
+  chipcolor?: string;
+  disabled?: boolean;
+  sx?: object;
+}
+
+const Chip = ({ chipcolor, disabled, sx = {}, variant, ...others }: ChipProps) => {
   const theme = useTheme();
 
   let defaultSX = {
@@ -166,13 +170,6 @@ const Chip = ({ chipcolor, disabled, sx = {}, variant, ...others }) => {
   }
   SX = { ...SX, ...sx };
   return <MuiChip {...others} sx={SX} />;
-};
-
-Chip.propTypes = {
-  sx: PropTypes.object,
-  chipcolor: PropTypes.string,
-  variant: PropTypes.string,
-  disabled: PropTypes.bool
 };
 
 export default Chip;

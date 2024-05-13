@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -12,17 +11,21 @@ import Typography from '@mui/material/Typography';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project import
-import navigation from 'menu-items';
+import navigation, { MenuItem } from '@/menu-items';
 
 // assets
-import { IconChevronRight, IconTallymark1 } from '@tabler/icons-react';
+import { Icon, IconChevronRight, IconTallymark1 } from '@tabler/icons-react';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 // ==============================|| BREADCRUMBS TITLE ||============================== //
 
-const BTitle = ({ title }) => {
+interface BTitleProps {
+  title?: string;
+}
+
+const BTitle = ({ title }: BTitleProps) => {
   return (
     <Grid item>
       <Typography variant="h3" sx={{ fontWeight: 500 }}>
@@ -32,11 +35,23 @@ const BTitle = ({ title }) => {
   );
 };
 
-BTitle.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-};
-
 // ==============================|| BREADCRUMBS ||============================== //
+
+interface BreadcrumbsProps {
+  card?: boolean;
+  custom?: boolean;
+  divider?: boolean;
+  heading?: string;
+  icon?: boolean;
+  icons?: boolean;
+  links?: { icon?: Icon; title: string; to: string }[];
+  maxItems?: number;
+  rightAlign?: boolean;
+  separator?: Icon;
+  title?: boolean;
+  titleBottom?: boolean;
+  sx?: object;
+}
 
 const Breadcrumbs = ({
   card,
@@ -53,11 +68,11 @@ const Breadcrumbs = ({
   titleBottom,
   sx,
   ...others
-}) => {
+}: BreadcrumbsProps) => {
   const theme = useTheme();
   const location = useLocation();
-  const [main, setMain] = useState();
-  const [item, setItem] = useState();
+  const [main, setMain] = useState<MenuItem>();
+  const [item, setItem] = useState<MenuItem>();
 
   const iconSX = {
     marginRight: 6,
@@ -75,7 +90,7 @@ const Breadcrumbs = ({
     alignItems: 'center'
   };
 
-  let customLocation = location.pathname;
+  const customLocation = location.pathname;
 
   useEffect(() => {
     navigation?.items?.map((menu) => {
@@ -92,7 +107,7 @@ const Breadcrumbs = ({
   });
 
   // set active item state
-  const getCollapse = (menu) => {
+  const getCollapse = (menu: MenuItem) => {
     if (!custom && menu.children) {
       menu.children.filter((collapse) => {
         if (collapse.type && collapse.type === 'collapse') {
@@ -176,7 +191,7 @@ const Breadcrumbs = ({
 
   // items
   if ((item && item.type === 'item') || (item?.type === 'group' && item?.url) || custom) {
-    itemTitle = item?.title;
+    itemTitle = item?.title ?? '';
 
     ItemIcon = item?.icon ? item.icon : AccountTreeTwoToneIcon;
     itemContent = (
@@ -255,23 +270,6 @@ const Breadcrumbs = ({
   }
 
   return breadcrumbContent;
-};
-
-Breadcrumbs.propTypes = {
-  sx: PropTypes.object,
-  custom: PropTypes.bool,
-  heading: PropTypes.string,
-  card: PropTypes.bool,
-  divider: PropTypes.bool,
-  icon: PropTypes.bool,
-  icons: PropTypes.bool,
-  maxItems: PropTypes.number,
-  navigation: PropTypes.object,
-  rightAlign: PropTypes.bool,
-  separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  title: PropTypes.bool,
-  titleBottom: PropTypes.bool,
-  links: PropTypes.array
 };
 
 export default Breadcrumbs;

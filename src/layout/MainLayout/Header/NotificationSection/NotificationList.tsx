@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
@@ -18,13 +16,17 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 
 // project-import
-import Chip from 'ui-component/extended/Chip';
+import Chip from '@/ui-component/extended/Chip';
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
 import User1 from 'assets/images/users/user-round.svg';
 
-const ListItemWrapper = ({ children }) => {
+interface ListItemWrapperProps {
+  children: React.ReactNode;
+}
+
+const ListItemWrapper = ({ children }: ListItemWrapperProps) => {
   return (
     <Box
       sx={{
@@ -40,10 +42,6 @@ const ListItemWrapper = ({ children }) => {
       {children}
     </Box>
   );
-};
-
-ListItemWrapper.propTypes = {
-  children: PropTypes.node
 };
 
 // ==============================|| NOTIFICATION LIST ITEM ||============================== //

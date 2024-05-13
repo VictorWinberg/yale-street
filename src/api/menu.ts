@@ -33,7 +33,7 @@ export function useGetMenuMaster() {
   return memoizedValue;
 }
 
-export function handlerDrawerOpen(isDashboardDrawerOpened) {
+export function handlerDrawerOpen(isDashboardDrawerOpened: boolean) {
   // to update local state based on key
 
   mutate(

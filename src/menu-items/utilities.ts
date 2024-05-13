@@ -1,5 +1,6 @@
 // assets
 import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons-react';
+import { MenuItem } from '.';
 
 // constant
 const icons = {
@@ -11,7 +12,7 @@ const icons = {
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
-const utilities = {
+const utilities: MenuItem = {
   id: 'utilities',
   title: 'Utilities',
   type: 'group',

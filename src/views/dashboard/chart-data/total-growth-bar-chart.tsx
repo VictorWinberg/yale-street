@@ -1,6 +1,8 @@
+import { Props as ChartProps } from 'react-apexcharts';
+
 // ==============================|| DASHBOARD - TOTAL GROWTH BAR CHART ||============================== //
 
-const chartData = {
+const chartData: ChartProps = {
   height: 480,
   type: 'bar',
   options: {

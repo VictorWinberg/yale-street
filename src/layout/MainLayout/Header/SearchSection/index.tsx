@@ -1,9 +1,8 @@
-import PropTypes from 'prop-types';
 import { useState, forwardRef } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
+import Avatar, { AvatarProps } from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -15,12 +14,16 @@ import Popper from '@mui/material/Popper';
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // project imports
-import Transitions from 'ui-component/extended/Transitions';
+import Transitions from '@/ui-component/extended/Transitions';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
 
-const HeaderAvatar = forwardRef(({ children, ...others }, ref) => {
+interface HeaderAvatarProps extends AvatarProps {
+  children: React.ReactNode;
+}
+
+const HeaderAvatar = forwardRef(({ children, ...others }: HeaderAvatarProps, ref) => {
   const theme = useTheme();
 
   return (
@@ -44,13 +47,15 @@ const HeaderAvatar = forwardRef(({ children, ...others }, ref) => {
   );
 });
 
-HeaderAvatar.propTypes = {
-  children: PropTypes.node
-};
-
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
 
-const MobileSearch = ({ value, setValue, popupState }) => {
+interface MobileSearchProps {
+  value: string;
+  setValue: (value: string) => void;
+  popupState: typeof PopupState;
+}
+
+const MobileSearch = ({ value, setValue, popupState }: MobileSearchProps) => {
   const theme = useTheme();
 
   return (
@@ -94,12 +99,6 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       sx={{ width: '100%', ml: 0.5, px: 2, bgcolor: 'background.paper' }}
     />
   );
-};
-
-MobileSearch.propTypes = {
-  value: PropTypes.string,
-  setValue: PropTypes.func,
-  popupState: PopupState
 };
 
 // ==============================|| SEARCH INPUT ||============================== //

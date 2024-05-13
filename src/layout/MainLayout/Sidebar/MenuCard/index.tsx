@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { memo } from 'react';
 
 // material-ui
@@ -7,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import LinearProgress, { linearProgressClasses, LinearProgressProps } from '@mui/material/LinearProgress';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -19,7 +18,11 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
 // ==============================|| PROGRESS BAR WITH LABEL ||============================== //
 
-function LinearProgressWithLabel({ value, ...others }) {
+interface LinearProgressWithLabelProps extends LinearProgressProps {
+  value: number;
+}
+
+function LinearProgressWithLabel({ value, ...others }: LinearProgressWithLabelProps) {
   return (
     <Grid container direction="column" spacing={1} sx={{ mt: 1.5 }}>
       <Grid item>
@@ -56,10 +59,6 @@ function LinearProgressWithLabel({ value, ...others }) {
     </Grid>
   );
 }
-
-LinearProgressWithLabel.propTypes = {
-  value: PropTypes.number
-};
 
 // ==============================|| SIDEBAR - MENU CARD ||============================== //
 

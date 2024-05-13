@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
@@ -14,14 +13,20 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
-import { MENU_OPEN, SET_MENU } from 'store/actions';
+import { MenuItem } from '@/menu-items';
+import { MENU_OPEN, SET_MENU } from '@/store/actions';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
-const NavItem = ({ item, level }) => {
+interface NavItemProps {
+  item: MenuItem;
+  level: number;
+}
+
+const NavItem = ({ item, level }: NavItemProps) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -53,7 +58,7 @@ const NavItem = ({ item, level }) => {
     listItemProps = { component: 'a', href: item.url, target: itemTarget };
   }
 
-  const itemHandler = (id) => {
+  const itemHandler = (id: string) => {
     dispatch({ type: MENU_OPEN, id });
     if (matchesSM) dispatch({ type: SET_MENU, opened: false });
   };
@@ -111,11 +116,6 @@ const NavItem = ({ item, level }) => {
       )}
     </ListItemButton>
   );
-};
-
-NavItem.propTypes = {
-  item: PropTypes.object,
-  level: PropTypes.number
 };
 
 export default NavItem;

@@ -1,11 +1,16 @@
-import PropTypes from 'prop-types';
-
 // material-ui
-import MuiAvatar from '@mui/material/Avatar';
+import MuiAvatar, { AvatarProps as MUIAvatarProps } from '@mui/material/Avatar';
 
 // ==============================|| AVATAR ||============================== //
 
-const Avatar = ({ color, outline, size, sx, ...others }) => {
+interface AvatarProps extends MUIAvatarProps {
+  color?: string;
+  outline?: boolean;
+  size?: 'badge' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  sx?: object;
+}
+
+const Avatar = ({ color, outline, size, sx, ...others }: AvatarProps) => {
   const colorSX = color && !outline && { color: 'background.paper', bgcolor: `${color}.main` };
   const outlineSX = outline && {
     color: color ? `${color}.main` : `primary.main`,
@@ -38,13 +43,6 @@ const Avatar = ({ color, outline, size, sx, ...others }) => {
   }
 
   return <MuiAvatar sx={{ ...colorSX, ...outlineSX, ...sizeSX, ...sx }} {...others} />;
-};
-
-Avatar.propTypes = {
-  color: PropTypes.string,
-  outline: PropTypes.bool,
-  size: PropTypes.string,
-  sx: PropTypes.object
 };
 
 export default Avatar;

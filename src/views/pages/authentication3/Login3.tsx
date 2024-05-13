@@ -11,8 +11,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthLogin from '../authentication/auth-forms/AuthLogin';
-import Logo from 'ui-component/Logo';
-import AuthFooter from 'ui-component/cards/AuthFooter';
+import Logo from '@/ui-component/Logo';
+import AuthFooter from '@/ui-component/cards/AuthFooter';
 
 // ================================|| AUTH3 - LOGIN ||================================ //
 

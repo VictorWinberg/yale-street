@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
@@ -14,9 +13,9 @@ import Typography from '@mui/material/Typography';
 
 // project imports
 import BajajAreaChartCard from './BajajAreaChartCard';
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
+import MainCard from '@/ui-component/cards/MainCard';
+import SkeletonPopularCard from '@/ui-component/cards/Skeleton/PopularCard';
+import { gridSpacing } from '@/store/constant';
 
 // assets
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
@@ -26,7 +25,11 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const PopularCard = ({ isLoading }) => {
+interface PopularCardProps {
+  isLoading: boolean;
+}
+
+const PopularCard = ({ isLoading }: PopularCardProps) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -305,10 +308,6 @@ const PopularCard = ({ isLoading }) => {
       )}
     </>
   );
-};
-
-PopularCard.propTypes = {
-  isLoading: PropTypes.bool
 };
 
 export default PopularCard;

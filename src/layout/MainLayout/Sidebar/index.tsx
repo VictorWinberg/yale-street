@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -15,13 +13,19 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import MenuCard from './MenuCard';
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
-import Chip from 'ui-component/extended/Chip';
+import Chip from '@/ui-component/extended/Chip';
 
-import { drawerWidth } from 'store/constant';
+import { drawerWidth } from '@/store/constant';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
-const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
+interface SidebarProps {
+  drawerOpen: boolean;
+  drawerToggle: () => void;
+  window: Window;
+}
+
+const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -88,12 +92,6 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       </Drawer>
     </Box>
   );
-};
-
-Sidebar.propTypes = {
-  drawerOpen: PropTypes.bool,
-  drawerToggle: PropTypes.func,
-  window: PropTypes.object
 };
 
 export default Sidebar;

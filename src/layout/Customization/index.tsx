@@ -19,16 +19,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import SubCard from 'ui-component/cards/SubCard';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
-import { gridSpacing } from 'store/constant';
+import SubCard from '@/ui-component/cards/SubCard';
+import AnimateButton from '@/ui-component/extended/AnimateButton';
+import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from '@/store/actions';
+import { gridSpacing } from '@/store/constant';
 
 // assets
 import { IconSettings } from '@tabler/icons-react';
 
 // concat 'px'
-function valueText(value) {
+function valueText(value: string) {
   return `${value}px`;
 }
 
@@ -47,7 +47,7 @@ const Customization = () => {
 
   // state - border radius
   const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
-  const handleBorderRadius = (event, newValue) => {
+  const handleBorderRadius = (_event: Event, newValue: number) => {
     setBorderRadius(newValue);
   };
 

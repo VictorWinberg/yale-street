@@ -1,21 +1,22 @@
-import PropTypes from 'prop-types';
-
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 
 // project imports
-import SubCard from 'ui-component/cards/SubCard';
-import MainCard from 'ui-component/cards/MainCard';
-import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+import SubCard from '@/ui-component/cards/SubCard';
+import MainCard from '@/ui-component/cards/MainCard';
+import SecondaryAction from '@/ui-component/cards/CardSecondaryAction';
 
-import { gridSpacing } from 'store/constant';
+import { gridSpacing } from '@/store/constant';
 
 // ===============================|| SHADOW BOX ||=============================== //
 
-const ShadowBox = ({ shadow }) => {
+interface ShadowBoxProps {
+  shadow: string;
+}
+
+const ShadowBox = ({ shadow }: ShadowBoxProps) => {
   return (
     <Card sx={{ mb: 3, boxShadow: shadow }}>
       <Box
@@ -34,41 +35,9 @@ const ShadowBox = ({ shadow }) => {
   );
 };
 
-ShadowBox.propTypes = {
-  shadow: PropTypes.string.isRequired
-};
-
-// ===============================|| SHADOW BOX ||=============================== //
-
-const CustomShadowBox = ({ shadow, label, color }) => (
-  <Card sx={{ mb: 3, boxShadow: shadow }}>
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        py: 3,
-        bgcolor: color,
-        color: 'background.default'
-      }}
-    >
-      {!label && <Box sx={{ color: 'inherit' }}>boxShadow: {shadow}</Box>}
-      {label && <Box sx={{ color: 'inherit' }}>{label}</Box>}
-    </Box>
-  </Card>
-);
-
-CustomShadowBox.propTypes = {
-  shadow: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
-};
-
 // ============================|| UTILITIES SHADOW ||============================ //
 
 const UtilitiesShadow = () => {
-  const theme = useTheme();
-
   return (
     <MainCard title="Basic Shadow" secondary={<SecondaryAction link="https://next.material-ui.com/system/shadows/" />}>
       <Grid container spacing={gridSpacing}>

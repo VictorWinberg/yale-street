@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
@@ -7,12 +5,17 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
 // project imports
+import { MenuItem } from '@/menu-items';
 import NavItem from '../NavItem';
 import NavCollapse from '../NavCollapse';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 
-const NavGroup = ({ item }) => {
+interface NavGroupProps {
+  item: MenuItem;
+}
+
+const NavGroup = ({ item }: NavGroupProps) => {
   const theme = useTheme();
 
   // menu list collapse & items
@@ -54,10 +57,6 @@ const NavGroup = ({ item }) => {
       <Divider sx={{ mt: 0.25, mb: 1.25 }} />
     </>
   );
-};
-
-NavGroup.propTypes = {
-  item: PropTypes.object
 };
 
 export default NavGroup;

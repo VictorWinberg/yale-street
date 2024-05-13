@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
@@ -13,8 +12,8 @@ import Typography from '@mui/material/Typography';
 import Chart from 'react-apexcharts';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
+import MainCard from '@/ui-component/cards/MainCard';
+import SkeletonTotalOrderCard from '@/ui-component/cards/Skeleton/EarningCard';
 
 import ChartDataMonth from './chart-data/total-order-month-line-chart';
 import ChartDataYear from './chart-data/total-order-year-line-chart';
@@ -25,7 +24,11 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
-const TotalOrderLineChartCard = ({ isLoading }) => {
+interface TotalOrderLineChartCardProps {
+  isLoading: boolean;
+}
+
+const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) => {
   const theme = useTheme();
 
   const [timeValue, setTimeValue] = React.useState(false);
@@ -160,10 +163,6 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
       )}
     </>
   );
-};
-
-TotalOrderLineChartCard.propTypes = {
-  isLoading: PropTypes.bool
 };
 
 export default TotalOrderLineChartCard;

@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
-import Card from '@mui/material/Card';
+import Card, { CardProps } from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
@@ -16,6 +15,20 @@ const headerSX = {
 };
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //
+
+export interface MainCardProps extends CardProps {
+  title?: React.ReactNode;
+  border?: boolean;
+  boxShadow?: boolean;
+  children: React.ReactNode;
+  content?: boolean;
+  contentClass?: string;
+  contentSX?: object;
+  darkTitle?: boolean;
+  secondary?: React.ReactNode;
+  shadow?: string | number;
+  sx?: object;
+}
 
 const MainCard = React.forwardRef(
   (
@@ -32,7 +45,7 @@ const MainCard = React.forwardRef(
       sx = {},
       title,
       ...others
-    },
+    }: MainCardProps,
     ref
   ) => {
     return (
@@ -66,19 +79,5 @@ const MainCard = React.forwardRef(
     );
   }
 );
-
-MainCard.propTypes = {
-  border: PropTypes.bool,
-  boxShadow: PropTypes.bool,
-  children: PropTypes.node,
-  content: PropTypes.bool,
-  contentClass: PropTypes.string,
-  contentSX: PropTypes.object,
-  darkTitle: PropTypes.bool,
-  secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
-  shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  sx: PropTypes.object,
-  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object])
-};
 
 export default MainCard;

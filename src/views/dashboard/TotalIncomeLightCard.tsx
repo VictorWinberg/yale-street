@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
@@ -11,8 +9,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
+import MainCard from '@/ui-component/cards/MainCard';
+import TotalIncomeCard from '@/ui-component/cards/Skeleton/TotalIncomeCard';
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -42,7 +40,14 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ==============================|| DASHBOARD - TOTAL INCOME LIGHT CARD ||============================== //
 
-const TotalIncomeLightCard = ({ isLoading, total, icon, label }) => {
+interface TotalIncomeLightCardProps {
+  isLoading: boolean;
+  total: number;
+  icon: React.ReactNode;
+  label: string;
+}
+
+const TotalIncomeLightCard = ({ isLoading, total, icon, label }: TotalIncomeLightCardProps) => {
   const theme = useTheme();
 
   return (
@@ -83,13 +88,6 @@ const TotalIncomeLightCard = ({ isLoading, total, icon, label }) => {
       )}
     </>
   );
-};
-
-TotalIncomeLightCard.propTypes = {
-  icon: PropTypes.object,
-  label: PropTypes.string,
-  total: PropTypes.number,
-  isLoading: PropTypes.bool
 };
 
 export default TotalIncomeLightCard;

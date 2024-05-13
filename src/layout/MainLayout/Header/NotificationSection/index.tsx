@@ -23,8 +23,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import Transitions from 'ui-component/extended/Transitions';
+import MainCard from '@/ui-component/cards/MainCard';
+import Transitions from '@/ui-component/extended/Transitions';
 import NotificationList from './NotificationList';
 
 // assets
@@ -61,14 +61,14 @@ const NotificationSection = () => {
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
-  const anchorRef = useRef(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const handleClose = (event: MouseEvent | TouchEvent) => {
+    if (anchorRef.current?.contains(event.target)) {
       return;
     }
     setOpen(false);

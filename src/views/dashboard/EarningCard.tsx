@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
@@ -11,8 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import MainCard from '@/ui-component/cards/MainCard';
+import SkeletonEarningCard from '@/ui-component/cards/Skeleton/EarningCard';
 
 // assets
 import EarningIcon from 'assets/images/icons/earning.svg';
@@ -25,7 +24,11 @@ import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const EarningCard = ({ isLoading }) => {
+interface EarningCardProps {
+  isLoading: boolean;
+}
+
+const EarningCard = ({ isLoading }: EarningCardProps) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -175,10 +178,6 @@ const EarningCard = ({ isLoading }) => {
       )}
     </>
   );
-};
-
-EarningCard.propTypes = {
-  isLoading: PropTypes.bool
 };
 
 export default EarningCard;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
@@ -13,9 +12,9 @@ import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
-import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
-import MainCard from 'ui-component/cards/MainCard';
-import { gridSpacing } from 'store/constant';
+import SkeletonTotalGrowthBarChart from '@/ui-component/cards/Skeleton/TotalGrowthBarChart';
+import MainCard from '@/ui-component/cards/MainCard';
+import { gridSpacing } from '@/store/constant';
 
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
@@ -37,7 +36,11 @@ const status = [
 
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
-const TotalGrowthBarChart = ({ isLoading }) => {
+interface TotalGrowthBarChartProps {
+  isLoading: boolean;
+}
+
+const TotalGrowthBarChart = ({ isLoading }: TotalGrowthBarChartProps) => {
   const [value, setValue] = React.useState('today');
   const theme = useTheme();
 
@@ -125,10 +128,6 @@ const TotalGrowthBarChart = ({ isLoading }) => {
       )}
     </>
   );
-};
-
-TotalGrowthBarChart.propTypes = {
-  isLoading: PropTypes.bool
 };
 
 export default TotalGrowthBarChart;
