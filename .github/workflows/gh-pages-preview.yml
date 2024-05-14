@@ -40,12 +40,13 @@ jobs:
         env:
           VITE_BASE_URL: /project-x/preview/${{ github.event.number }}
 
-      - name: Github Deploy 🚀
+      - name: Github Preview Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           BRANCH: gh-pages
           FOLDER: dist
           CLEAN: true
+          COMMIT-MESSAGE: 'Deploy preview for PR #${{ github.event.number }} 👓'
           TARGET-FOLDER: preview/${{ github.event.number }}
 
       - uses: marocchino/sticky-pull-request-comment@v2
