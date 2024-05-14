@@ -28,7 +28,7 @@ export function envGet(name: string, isRequired = false, defaultValue: string | 
  */
 export function envRequired(passProcessDotEnvDotValueNameHere: string | undefined): string {
   if (typeof passProcessDotEnvDotValueNameHere === 'undefined') {
-    throw new Error(`Missing .env variable: ${passProcessDotEnvDotValueNameHere}!`);
+    throw new Error('Missing .env variable!');
   }
   return passProcessDotEnvDotValueNameHere;
 }
