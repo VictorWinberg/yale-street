@@ -46,7 +46,7 @@ jobs:
           BRANCH: gh-pages
           FOLDER: dist
           CLEAN: true
-          COMMIT-MESSAGE: 'Deploy preview for PR #${{ github.event.number }} 👓'
+          COMMIT-MESSAGE: 'Deploy preview for PR #${{ github.event.number }} 🚀'
           TARGET-FOLDER: preview/${{ github.event.number }}
 
       - uses: marocchino/sticky-pull-request-comment@v2
