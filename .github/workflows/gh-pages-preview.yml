@@ -1,0 +1,56 @@
+name: Preview to Github Pages
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install pnpm ❤️️
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node.js ${{ matrix.node-version }} ❤️️
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install and Build Frontend 🔧
+        run: |
+          pnpm install
+          pnpm build
+        env:
+          VITE_BASE_URL: '/project-x/${{ github.head_ref }}'
+
+      - name: Github Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          BRANCH: gh-pages
+          FOLDER: dist
+          CLEAN: true
+          TARGET-FOLDER: ${{ github.head_ref }}
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: test-env
+          append: true
+          message: |
+            See the preview at https://victorwinberg.github.io/project-x/${{ github.head_ref }}

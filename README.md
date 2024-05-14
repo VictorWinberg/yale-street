@@ -1,54 +1,48 @@
-# Starter project for Vite with React + MUI using TypeScript
+# Project X
 
-Mix of [npm create vite](https://vitejs.dev/guide/) and [MUI](https://mui.com) with set of reusable components
-and utilities to build professional React application faster.
+This is a starter project utilizing Vite with React + MUI, leveraging TypeScript for enhanced development experience. It's designed to accelerate the creation of professional React applications, featuring a mix of [Vite](https://vitejs.dev/guide/) and [MUI](https://mui.com) with a collection of reusable components and utilities.
 
-- [Source Code](https://github.com/karpolan/react-mui-vite-ts)
-- [Online Demo](https://react-mui-vite-ts.netlify.app)
+## Features
 
-Inclides:
+- **Prettier**: Ensures consistent code formatting.
+- **Eslint**: Performs code linting for error checking.
+- **Common Components**: Includes a set of common components, useful hooks, and essential utilities.
+- **State Management**: Utilizes Context API for state management.
+- **Public and Private Layouts**: Offers different and customized layouts for public and private sections.
+- **Authentication**: Provides basic authentication hooks and events.
+- **Dark and Light Mode**: Supports both dark and light mode with a switch.
+- **PWA Support**: Includes FavIcon and Manifest for Progressive Web App functionality.
 
-- **Prettier** for code formatting
-- **Eslint** for error checking
-- Set of common **components**, useful **hooks**, and essential **utilities**
-- State management using **Context API**
-- Different and customized **Public** and **Private** layouts
-- Basic **authentication** hooks and events
-- **Dark** and **Light** mode with switch
-- FavIcon and Manifest for **PWA**
+## Prerequisites
 
-## How to use
+1. Node v20 and pnpm (installed via `corepack enable pnpm`)
+2. Copy the `.env.example` file into `.env`.
+3. Install deps (`pnpm install`)
 
-1. Clone or download the repo from: https://github.com/karpolan/react-mui-vite-ts
-2. Copy `.env.sample` file into `.env` file
-3. Replace `_TITLE_` and `_DESCRIPTION_` in all files with own texts
-4. Check and resolve all `// TODO: ` directives
-5. Add your own code :)
+## Folder Structure
+
+```
+├── assets                  # Static assets like images, fonts, etc.
+│   ├── images              # Image assets
+│   └── scss                # SCSS stylesheets
+├── hooks                   # Custom React hooks
+├── layout                  # Contains layout components
+├── routes                  # Route configuration files
+├── store                   # Store configuration files
+├── theme                   # Theme configuration files
+├── ui-component            # Reusable UI components
+├── utils                   # Utility functions and helpers
+└── views                   # View components for different pages
+```
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm run dev`
+- `pnpm dev`: Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `pnpm lint`: Checks the code for errors and missing things.
+- `pnpm format`: Formats the code according to the `.prettierrc.js` config.
+- `pnpm test`: Launches the test runner in interactive watch mode.
+- `pnpm build`: Builds the app for production or local development to the `dist` folder.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm run lint`
-
-Checks the code for errors and missing things
-
-### `npm run format`
-
-Formats the code according to `./prettierrc.js` config
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-
-### `npm run build`
-
-Builds the app for production or local development to the `dist` folder.<br />
+Feel free to reach out if you have any questions or need further assistance!
