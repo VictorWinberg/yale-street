@@ -8,7 +8,7 @@ on:
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
   pull-requests: write
-  contents: read
+  contents: write
 
 jobs:
   deploy:
@@ -38,7 +38,7 @@ jobs:
           pnpm install
           pnpm build
         env:
-          VITE_BASE_URL: '/project-x/${{ github.head_ref }}'
+          VITE_BASE_URL: /project-x/preview/${{ github.event.number }}
 
       - name: Github Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.5.0
@@ -46,11 +46,10 @@ jobs:
           BRANCH: gh-pages
           FOLDER: dist
           CLEAN: true
-          TARGET-FOLDER: ${{ github.head_ref }}
+          TARGET-FOLDER: preview/${{ github.event.number }}
 
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: test-env
-          append: true
           message: |
-            See the preview at https://victorwinberg.github.io/project-x/${{ github.head_ref }}
+            See the preview at https://victorwinberg.github.io/project-x/preview/${{ github.event.number }}

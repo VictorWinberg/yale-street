@@ -9,10 +9,10 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
-import AuthWrapper1 from '../AuthWrapper1';
+import AuthWrapper from '../AuthWrapper';
 import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from '@/ui-component/Logo';
-import AuthRegister from '../authentication/auth-forms/AuthRegister';
+import AuthRegister from './auth-forms/AuthRegister';
 import AuthFooter from '@/ui-component/cards/AuthFooter';
 
 // assets
@@ -23,7 +23,7 @@ const Register = () => {
   const downMD = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
-    <AuthWrapper1>
+    <AuthWrapper>
       <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
@@ -57,7 +57,7 @@ const Register = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography component={Link} to="/pages/login/login3" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                      <Typography component={Link} to="/pages/login" variant="subtitle1" sx={{ textDecoration: 'none' }}>
                         Already have an account?
                       </Typography>
                     </Grid>
@@ -71,7 +71,7 @@ const Register = () => {
           <AuthFooter />
         </Grid>
       </Grid>
-    </AuthWrapper1>
+    </AuthWrapper>
   );
 };
 

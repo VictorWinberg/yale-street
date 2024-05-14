@@ -9,9 +9,9 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
-import AuthWrapper1 from '../AuthWrapper1';
+import AuthWrapper from '../AuthWrapper';
 import AuthCardWrapper from '../AuthCardWrapper';
-import AuthLogin from '../authentication/auth-forms/AuthLogin';
+import AuthLogin from './auth-forms/AuthLogin';
 import Logo from '@/ui-component/Logo';
 import AuthFooter from '@/ui-component/cards/AuthFooter';
 
@@ -21,7 +21,7 @@ const Login = () => {
   const downMD = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
-    <AuthWrapper1>
+    <AuthWrapper>
       <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
@@ -55,7 +55,7 @@ const Login = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography component={Link} to="/pages/register/register3" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                      <Typography component={Link} to="/pages/register" variant="subtitle1" sx={{ textDecoration: 'none' }}>
                         Don&apos;t have an account?
                       </Typography>
                     </Grid>
@@ -69,7 +69,7 @@ const Login = () => {
           <AuthFooter />
         </Grid>
       </Grid>
-    </AuthWrapper1>
+    </AuthWrapper>
   );
 };
 

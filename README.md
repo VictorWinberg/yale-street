@@ -10,8 +10,6 @@ This is a starter project utilizing Vite with React + MUI, leveraging TypeScript
 - **State Management**: Utilizes Context API for state management.
 - **Public and Private Layouts**: Offers different and customized layouts for public and private sections.
 - **Authentication**: Provides basic authentication hooks and events.
-- **Dark and Light Mode**: Supports both dark and light mode with a switch.
-- **PWA Support**: Includes FavIcon and Manifest for Progressive Web App functionality.
 
 ## Prerequisites
 
