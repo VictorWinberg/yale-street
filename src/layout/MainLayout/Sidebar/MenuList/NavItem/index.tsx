@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 // material-ui
+import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -10,6 +11,8 @@ import Typography from '@mui/material/Typography';
 
 // project imports
 import { MenuItem } from '@/layout/menu-items';
+import { useAppStore } from '@/store';
+import { SET_MENU } from '@/store/actions';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -24,6 +27,8 @@ interface NavItemProps {
 const NavItem = ({ item, level }: NavItemProps) => {
   const theme = useTheme();
   const { pathname } = useLocation();
+  const [state, dispatch] = useAppStore();
+  const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
   const Icon = item.icon;
   const itemIcon = Icon ? (
@@ -51,6 +56,12 @@ const NavItem = ({ item, level }: NavItemProps) => {
     )
   );
 
+  const onItemClick = () => {
+    if (matchDownMd) {
+      dispatch({ type: SET_MENU, payload: !state.opened });
+    }
+  };
+
   return (
     <ListItemButton
       component={LinkComponent}
@@ -64,6 +75,7 @@ const NavItem = ({ item, level }: NavItemProps) => {
         pl: `${level * 24}px`
       }}
       selected={item.url === pathname}
+      onClick={onItemClick}
     >
       <ListItemIcon sx={{ my: 'auto', minWidth: !item.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
       <ListItemText
