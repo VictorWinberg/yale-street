@@ -24,6 +24,10 @@
       // Otherwise, leave pathSegmentsToKeep as 0.
       var pathSegmentsToKeep = 1;
 
+      // https://username.github.io/repo-name/preview/X/one/two?a=b&c=d#qwe becomes
+      // https://username.github.io/repo-name/preview/X/?/one/two&a=b~and~c=d#qwe
+      if (window.location.pathname.includes('/preview/')) pathSegmentsToKeep = 3;
+
       var l = window.location;
       l.replace(
         l.protocol +
