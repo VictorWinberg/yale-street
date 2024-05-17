@@ -5,7 +5,7 @@ import MuiChip, { ChipProps as MUIChipProps } from '@mui/material/Chip';
 // ==============================|| CHIP ||============================== //
 
 interface ChipProps extends MUIChipProps {
-  chipcolor?: string;
+  chipcolor?: 'primary' | 'secondary' | 'success' | 'error' | 'orange' | 'warning';
   disabled?: boolean;
   sx?: object;
 }

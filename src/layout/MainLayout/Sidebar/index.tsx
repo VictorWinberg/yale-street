@@ -47,7 +47,8 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
           <MenuList />
           <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label={__APP_VERSION__} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
+            <Chip label={`v${__APP_VERSION__}`} disabled size="small" />
+            <Chip label={__COMMIT_HASH__} disabled size="small" />
           </Stack>
         </PerfectScrollbar>
       </BrowserView>
@@ -56,7 +57,8 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
           <MenuList />
           <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label={__APP_VERSION__} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
+            <Chip label={`v${__APP_VERSION__}`} disabled size="small" />
+            <Chip label={__COMMIT_HASH__} disabled size="small" />
           </Stack>
         </Box>
       </MobileView>
