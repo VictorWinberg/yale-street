@@ -1,42 +1,40 @@
 // assets
-import { IconBrandChrome, IconHelp, IconNote } from '@tabler/icons-react';
+import { IconSettings, IconUser, IconHelp } from '@tabler/icons-react';
 import { MenuItem } from '.';
 
 // constant
-const icons = { IconBrandChrome, IconHelp, IconNote };
+const icons = { IconSettings, IconUser, IconHelp };
 
-// ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
+// ==============================|| OTHER MENU ITEMS ||============================== //
 
 const other: MenuItem = {
-  id: 'sample-docs-roadmap',
-  title: 'Sample Docs',
+  id: 'other',
+  title: 'Annat',
   type: 'group',
   children: [
     {
-      id: 'documentation',
-      title: 'Documentation',
-      type: 'collapse',
-      icon: icons.IconNote,
-
-      children: [
-        {
-          id: 'default',
-          title: 'Sample Page',
-          type: 'item',
-          url: '/sample-page',
-          icon: icons.IconBrandChrome,
-          breadcrumbs: true
-        },
-        {
-          id: 'documentation',
-          title: 'Documentation',
-          type: 'item',
-          url: 'https://codedthemes.gitbook.io/berry/',
-          icon: icons.IconHelp,
-          external: true,
-          target: true
-        }
-      ]
+      id: 'settings',
+      title: 'Inställningar',
+      type: 'item',
+      url: '/settings',
+      icon: icons.IconSettings,
+      breadcrumbs: false
+    },
+    {
+      id: 'account',
+      title: 'Mitt konto',
+      type: 'item',
+      url: '/my-account',
+      icon: icons.IconUser,
+      breadcrumbs: false
+    },
+    {
+      id: 'help',
+      title: 'Hjälp',
+      type: 'item',
+      url: '/help',
+      icon: icons.IconHelp,
+      breadcrumbs: false
     }
   ]
 };

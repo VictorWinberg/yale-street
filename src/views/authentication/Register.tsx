@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
-import AuthWrapper from '../AuthWrapper';
-import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper from './wrapper/AuthWrapper';
+import AuthCardWrapper from './wrapper/AuthCardWrapper';
 import Logo from '@/ui-component/Logo';
 import AuthRegister from './auth-forms/AuthRegister';
 import AuthFooter from '@/ui-component/cards/AuthFooter';

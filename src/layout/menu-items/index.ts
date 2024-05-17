@@ -1,7 +1,6 @@
-import dashboard from './dashboard';
-import pages from './pages';
-import utilities from './utilities';
+import main from './main';
 import other from './other';
+import dev from './dev';
 import { Icon } from '@tabler/icons-react';
 
 // ==============================|| MENU ITEMS ||============================== //
@@ -21,7 +20,7 @@ export interface MenuItem {
 }
 
 const menuItems: { items: MenuItem[] } = {
-  items: [dashboard, pages, utilities, other]
+  items: [main, other, dev]
 };
 
 export default menuItems;

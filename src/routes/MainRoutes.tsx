@@ -4,16 +4,24 @@ import { lazy } from 'react';
 import MainLayout from '@/layout/MainLayout';
 import Loadable from '@/ui-component/Loadable';
 
-// dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('@/views/dashboard')));
+// main routing
+const Dashboard = Loadable(lazy(() => import('@/views/dashboard')));
+const Mailing = Loadable(lazy(() => import('@/views/mailing')));
+const Results = Loadable(lazy(() => import('@/views/results')));
+const Organization = Loadable(lazy(() => import('@/views/organization')));
+const Modules = Loadable(lazy(() => import('@/views/modules')));
 
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('@/views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('@/views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('@/views/utilities/Shadow')));
+// other routing
+const Settings = Loadable(lazy(() => import('@/views/settings')));
+const Account = Loadable(lazy(() => import('@/views/account')));
+const Help = Loadable(lazy(() => import('@/views/help')));
 
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('@/views/sample-page')));
+// dev routing
+const Dev = Loadable(lazy(() => import('@/views/dev')));
+const UtilsTypography = Loadable(lazy(() => import('@/views/dev/utils/Typography')));
+const UtilsColor = Loadable(lazy(() => import('@/views/dev/utils/Color')));
+const UtilsShadow = Loadable(lazy(() => import('@/views/dev/utils/Shadow')));
+const SamplePage = Loadable(lazy(() => import('@/views/dev/SamplePage')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -23,47 +31,60 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <DashboardDefault />
+      element: <Dashboard />
     },
     {
-      path: 'dashboard',
+      path: '/mailing',
+      element: <Mailing />
+    },
+    {
+      path: '/results',
+      element: <Results />
+    },
+    {
+      path: '/organization',
+      element: <Organization />
+    },
+    {
+      path: '/modules',
+      element: <Modules />
+    },
+    {
+      path: '/settings',
+      element: <Settings />
+    },
+    {
+      path: '/my-account',
+      element: <Account />
+    },
+    {
+      path: '/help',
+      element: <Help />
+    },
+    {
+      path: 'dev',
       children: [
         {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
-    },
-    {
-      path: 'utils',
-      children: [
+          path: '',
+          element: <Dev />
+        },
         {
           path: 'util-typography',
           element: <UtilsTypography />
-        }
-      ]
-    },
-    {
-      path: 'utils',
-      children: [
+        },
         {
           path: 'util-color',
           element: <UtilsColor />
-        }
-      ]
-    },
-    {
-      path: 'utils',
-      children: [
+        },
         {
           path: 'util-shadow',
           element: <UtilsShadow />
+        },
+        {
+          path: 'sample-page',
+          element: <SamplePage />
         }
       ]
-    },
-    {
-      path: 'sample-page',
-      element: <SamplePage />
     }
   ]
 };

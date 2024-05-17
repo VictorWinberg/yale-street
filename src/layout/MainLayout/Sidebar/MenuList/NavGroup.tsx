@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 
 // project imports
 import { MenuItem } from '@/layout/menu-items';
-import NavItem from '../NavItem';
-import NavCollapse from '../NavCollapse';
+import NavItem from './NavItem';
+import NavCollapse from './NavCollapse';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 

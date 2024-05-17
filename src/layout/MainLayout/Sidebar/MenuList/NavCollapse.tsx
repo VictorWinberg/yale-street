@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import NavItem from '../NavItem';
+import NavItem from './NavItem';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';

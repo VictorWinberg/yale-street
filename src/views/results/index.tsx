@@ -6,10 +6,10 @@ import MainCard from '@/ui-component/cards/MainCard';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-const Dashboard = () => (
-  <MainCard title="Dashboard">
-    <Typography variant="body2">Welcome to the dashboard. This is a sample page.</Typography>
+const Results = () => (
+  <MainCard title="Results">
+    <Typography variant="body2">Welcome to the Results. This is a sample page.</Typography>
   </MainCard>
 );
 
-export default Dashboard;
+export default Results;
