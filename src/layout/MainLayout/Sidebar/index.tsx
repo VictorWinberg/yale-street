@@ -10,7 +10,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { BrowserView, MobileView } from 'react-device-detect';
 
 // project imports
-import MenuCard from './MenuCard';
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import Chip from '@/ui-component/extended/Chip';
@@ -45,7 +44,6 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
           }}
         >
           <MenuList />
-          <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
             <Chip label={`v${__APP_VERSION__}`} disabled size="small" />
             <Chip label={__COMMIT_HASH__} disabled size="small" />
@@ -55,7 +53,6 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
       <MobileView>
         <Box sx={{ px: 2 }}>
           <MenuList />
-          <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
             <Chip label={`v${__APP_VERSION__}`} disabled size="small" />
             <Chip label={__COMMIT_HASH__} disabled size="small" />

@@ -1,10 +1,21 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill, IconBrandChrome, IconHelp, IconNote, IconKey } from '@tabler/icons-react';
+import {
+  IconBrandChrome,
+  IconCode,
+  IconHelp,
+  IconKey,
+  IconNote,
+  IconPalette,
+  IconShadow,
+  IconTypography,
+  IconWindmill
+} from '@tabler/icons-react';
 import { MenuItem } from '.';
 
 // constant
 const icons = {
   IconBrandChrome,
+  IconCode,
   IconHelp,
   IconKey,
   IconNote,
@@ -19,7 +30,8 @@ const icons = {
 const dev: MenuItem = {
   id: 'dev',
   title: 'Dev',
-  type: 'group',
+  type: 'collapse',
+  icon: icons.IconCode,
   children: [
     {
       id: 'util-typography',
