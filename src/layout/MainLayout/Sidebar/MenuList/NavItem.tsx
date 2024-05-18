@@ -74,7 +74,7 @@ const NavItem = ({ item, level }: NavItemProps) => {
         py: level > 1 ? 1 : 1.25,
         pl: `${level * 24}px`
       }}
-      selected={item.url === pathname}
+      selected={pathname.startsWith(item.url || '')}
       onClick={onItemClick}
     >
       <ListItemIcon sx={{ my: 'auto', minWidth: !item.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>

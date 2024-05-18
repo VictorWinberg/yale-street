@@ -3,9 +3,19 @@ import { lazy } from 'react';
 // project imports
 import MainLayout from '@/layout/MainLayout';
 import Loadable from '@/ui-component/Loadable';
+import { Navigate } from 'react-router-dom';
+
+// dashboard routing
+const DashboardWrapper = Loadable(lazy(() => import('@/views/dashboard')));
+const Dashboard = Loadable(lazy(() => import('@/views/dashboard/Dashboard')));
+const Assignments = Loadable(lazy(() => import('@/views/dashboard/Assignments')));
+const Contacts = Loadable(lazy(() => import('@/views/dashboard/Contacts')));
+const Companies = Loadable(lazy(() => import('@/views/dashboard/Companies')));
+const Seeking = Loadable(lazy(() => import('@/views/dashboard/Seeking')));
+const Reports = Loadable(lazy(() => import('@/views/dashboard/Reports')));
+const Leads = Loadable(lazy(() => import('@/views/dashboard/Leads')));
 
 // main routing
-const Dashboard = Loadable(lazy(() => import('@/views/dashboard')));
 const Mailing = Loadable(lazy(() => import('@/views/mailing')));
 const Results = Loadable(lazy(() => import('@/views/results')));
 const Organization = Loadable(lazy(() => import('@/views/organization')));
@@ -30,35 +40,69 @@ const MainRoutes = {
   element: <MainLayout />,
   children: [
     {
-      path: '/',
-      element: <Dashboard />
+      path: '',
+      element: <Navigate to="/dashboard" />
     },
     {
-      path: '/mailing',
+      path: 'dashboard',
+      element: <DashboardWrapper />,
+      children: [
+        {
+          path: '',
+          element: <Dashboard />
+        },
+        {
+          path: 'assignments',
+          element: <Assignments />
+        },
+        {
+          path: 'contacts',
+          element: <Contacts />
+        },
+        {
+          path: 'companies',
+          element: <Companies />
+        },
+        {
+          path: 'seeking',
+          element: <Seeking />
+        },
+        {
+          path: 'reports',
+          element: <Reports />
+        },
+        {
+          path: 'leads',
+          element: <Leads />
+        }
+      ]
+    },
+    {
+      path: 'mailing',
       element: <Mailing />
     },
     {
-      path: '/results',
+      path: 'results',
       element: <Results />
     },
     {
-      path: '/organization',
+      path: 'organization',
       element: <Organization />
     },
     {
-      path: '/modules',
+      path: 'modules',
       element: <Modules />
     },
     {
-      path: '/settings',
+      path: 'settings',
       element: <Settings />
     },
     {
-      path: '/my-account',
+      path: 'my-account',
       element: <Account />
     },
     {
-      path: '/help',
+      path: 'help',
       element: <Help />
     },
     {
