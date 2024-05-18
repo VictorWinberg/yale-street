@@ -12,7 +12,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Breadcrumbs from '@/ui-component/extended/Breadcrumbs';
 import { SET_MENU } from '@/store/actions';
-import { drawerWidth } from '@/store/constant';
+import { drawerWidth, headerHeight } from '@/store/constant';
 
 // assets
 import { IconChevronRight } from '@tabler/icons-react';
@@ -24,8 +24,6 @@ interface MainProps {
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })<MainProps>(({ theme, open }) => ({
   ...theme.typography.mainContent,
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
   transition: theme.transitions.create(
     'margin',
     open
@@ -78,7 +76,9 @@ const MainLayout = () => {
         color="inherit"
         elevation={0}
         sx={{
+          height: headerHeight,
           bgcolor: theme.palette.background.default,
+          borderBottom: `1px solid ${theme.palette.divider}`,
           transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
         }}
       >

@@ -242,7 +242,7 @@ const ProfileSection = () => {
                         }}
                       >
                         <ListItemButton
-                          sx={{ borderRadius: '12px' }}
+                          sx={{ borderRadius: '6px' }}
                           selected={selectedIndex === 0}
                           onClick={(event) => handleListItemClick(event, 0, '#')}
                         >
@@ -252,7 +252,7 @@ const ProfileSection = () => {
                           <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
                         </ListItemButton>
                         <ListItemButton
-                          sx={{ borderRadius: '12px' }}
+                          sx={{ borderRadius: '6px' }}
                           selected={selectedIndex === 1}
                           onClick={(event) => handleListItemClick(event, 1, '#')}
                         >
@@ -279,7 +279,7 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: '12px' }} selected={selectedIndex === 4} onClick={handleLogout}>
+                        <ListItemButton sx={{ borderRadius: '6px' }} selected={selectedIndex === 4} onClick={handleLogout}>
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>

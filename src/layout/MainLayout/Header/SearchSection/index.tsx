@@ -19,6 +19,7 @@ import Transitions from '@/ui-component/extended/Transitions';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
+import { FilledInput } from '@mui/material';
 
 interface HeaderAvatarProps extends AvatarProps {
   children: React.ReactNode;
@@ -34,11 +35,11 @@ const HeaderAvatar = forwardRef(({ children, ...others }: HeaderAvatarProps, ref
       sx={{
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
-        bgcolor: 'secondary.light',
-        color: 'secondary.dark',
+        bgcolor: 'primary.light',
+        color: 'primary.dark',
         '&:hover': {
-          bgcolor: 'secondary.dark',
-          color: 'secondary.light'
+          bgcolor: 'primary.dark',
+          color: 'primary.light'
         }
       }}
       {...others}
@@ -144,26 +145,20 @@ const SearchSection = () => {
         </PopupState>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-        <OutlinedInput
+        <FilledInput
           id="input-search-header"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Search"
-          startAdornment={
-            <InputAdornment position="start">
+          placeholder="Sök"
+          endAdornment={
+            <InputAdornment position="end">
               <IconSearch stroke={1.5} size="16px" />
             </InputAdornment>
           }
-          endAdornment={
-            <InputAdornment position="end">
-              <HeaderAvatar>
-                <IconAdjustmentsHorizontal stroke={1.5} size="20px" />
-              </HeaderAvatar>
-            </InputAdornment>
-          }
+          disableUnderline
           aria-describedby="search-helper-text"
-          inputProps={{ 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } }}
-          sx={{ width: { md: 250, lg: 434 }, ml: 2, px: 2 }}
+          inputProps={{ 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5, py: 1.5 } }}
+          sx={{ borderRadius: '6px', width: { md: 250, lg: 434 }, ml: 2, px: 2 }}
         />
       </Box>
     </>

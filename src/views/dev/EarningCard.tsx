@@ -50,7 +50,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
           border={false}
           cardContent={false}
           sx={{
-            bgcolor: 'secondary.dark',
+            bgcolor: 'primary.dark',
             color: '#fff',
             overflow: 'hidden',
             position: 'relative',
@@ -59,7 +59,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.palette.secondary.dark,
+              background: theme.palette.primary.dark,
               borderRadius: '50%',
               top: { xs: -105, sm: -85 },
               right: { xs: -140, sm: -95 }
@@ -69,7 +69,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.palette.secondary.dark,
+              background: theme.palette.primary.dark,
               borderRadius: '50%',
               top: { xs: -155, sm: -125 },
               right: { xs: -70, sm: -15 },
@@ -87,7 +87,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                       sx={{
                         ...theme.typography.commonAvatar,
                         ...theme.typography.largeAvatar,
-                        bgcolor: 'secondary.dark',
+                        bgcolor: 'primary.dark',
                         mt: 1
                       }}
                     >
@@ -100,8 +100,8 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                       sx={{
                         ...theme.typography.commonAvatar,
                         ...theme.typography.mediumAvatar,
-                        bgcolor: 'secondary.dark',
-                        color: 'secondary.light',
+                        bgcolor: 'primary.dark',
+                        color: 'primary.light',
                         zIndex: 1
                       }}
                       aria-controls="menu-earning-card"
@@ -152,8 +152,8 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                       sx={{
                         cursor: 'pointer',
                         ...theme.typography.smallAvatar,
-                        bgcolor: 'secondary.light',
-                        color: 'secondary.dark'
+                        bgcolor: 'primary.light',
+                        color: 'primary.dark'
                       }}
                     >
                       <ArrowUpwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
@@ -166,7 +166,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                   sx={{
                     fontSize: '1rem',
                     fontWeight: 500,
-                    color: 'secondary.light'
+                    color: 'primary.light'
                   }}
                 >
                   Total Earning

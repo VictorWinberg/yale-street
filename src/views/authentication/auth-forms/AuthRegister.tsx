@@ -101,7 +101,7 @@ const AuthRegister = ({ ...others }) => {
                 borderColor: `${theme.palette.grey[100]} !important`,
                 color: `${theme.palette.grey[900]}!important`,
                 fontWeight: 500,
-                borderRadius: '12px'
+                borderRadius: '6px'
               }}
               disableRipple
               disabled
@@ -251,7 +251,7 @@ const AuthRegister = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
+                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
                   Sign up
                 </Button>
               </AnimateButton>

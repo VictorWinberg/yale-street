@@ -2,14 +2,14 @@
 $paper: #ffffff;
 
 // primary
-$primaryLight: #eef2f6;
-$primaryMain: #2196f3;
-$primaryDark: #1e88e5;
+$primaryLight: #e2e5f8;
+$primaryMain: #5969cf;
+$primaryDark: #37375c;
 
 // secondary
-$secondaryLight: #ede7f6;
-$secondaryMain: #673ab7;
-$secondaryDark: #5e35b1;
+$secondaryLight: #ff0000;
+$secondaryMain: #ff0000;
+$secondaryDark: #ff0000;
 
 // success Colors
 $successLight: #b9f6ca;
@@ -32,14 +32,16 @@ $warningMain: #ffe57f;
 $warningDark: #ffc107;
 
 // grey
-$grey50: #f8fafc;
-$grey100: #eef2f6;
-$grey200: #e3e8ef;
-$grey300: #cdd5df;
-$grey500: #697586;
-$grey600: #4b5565;
-$grey700: #364152;
-$grey900: #121926;
+$grey50: hsl(225, 40%, 98%);
+$grey100: hsl(225, 31%, 95%);
+$grey200: hsl(235, 26%, 91%);
+$grey300: hsl(233, 22%, 84%);
+$grey400: hsl(234, 19%, 74%);
+$grey500: hsl(234, 12%, 47%);
+$grey600: hsl(238, 15%, 35%);
+$grey700: hsl(236, 21%, 27%);
+$grey800: hsl(238, 28%, 20%);
+$grey900: hsl(240, 36%, 11%);
 
 // ==============================|| DARK THEME VARIANTS ||============================== //
 
@@ -107,9 +109,11 @@ $darkTextSecondary: #8492c4;
   grey100: $grey100;
   grey200: $grey200;
   grey300: $grey300;
+  grey400: $grey400;
   grey500: $grey500;
   grey600: $grey600;
   grey700: $grey700;
+  grey800: $grey800;
   grey900: $grey900;
 
   // ==============================|| DARK THEME VARIANTS ||============================== //

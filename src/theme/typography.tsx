@@ -1,6 +1,7 @@
 import { TypographyOptions, TypographyStyleOptions } from '@mui/material/styles/createTypography';
 
 import { ThemeOptionProps } from '.';
+import { headerHeight } from '@/store/constant';
 
 /**
  * Typography used in theme
@@ -21,22 +22,22 @@ export default function themeTypography(theme: ThemeOptionProps): TypographyOpti
     h4: {
       fontSize: '1rem',
       color: theme.heading,
-      fontWeight: 600
+      fontWeight: 500
     },
     h3: {
       fontSize: '1.25rem',
       color: theme.heading,
-      fontWeight: 600
+      fontWeight: 500
     },
     h2: {
       fontSize: '1.5rem',
       color: theme.heading,
-      fontWeight: 700
+      fontWeight: 500
     },
     h1: {
       fontSize: '2.125rem',
       color: theme.heading,
-      fontWeight: 700
+      fontWeight: 500
     },
     subtitle1: {
       fontSize: '0.875rem',
@@ -88,14 +89,11 @@ export default function themeTypography(theme: ThemeOptionProps): TypographyOpti
       }
     },
     mainContent: {
-      backgroundColor: theme.background,
       width: '100%',
-      minHeight: 'calc(100vh - 88px)',
+      minHeight: `calc(100vh - ${headerHeight}px)`,
       flexGrow: 1,
-      padding: '20px',
-      marginTop: '88px',
-      marginRight: '20px',
-      borderRadius: '12px'
+      marginTop: `${headerHeight}px`,
+      padding: '40px'
     },
     menuCaption: {
       fontSize: '0.875rem',

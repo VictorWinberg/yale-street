@@ -21,15 +21,15 @@ export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Com
           backgroundImage: 'none'
         },
         rounded: {
-          borderRadius: '12px'
+          borderRadius: '6px'
         }
       }
     },
     MuiCardHeader: {
       styleOverrides: {
         root: {
-          color: theme.colors?.textDark,
-          padding: '24px'
+          color: theme.colors?.textDark
+          // padding: '24px'
         },
         title: {
           fontSize: '1.125rem'
@@ -39,14 +39,14 @@ export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Com
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: '24px'
+          // padding: '24px'
         }
       }
     },
     MuiCardActions: {
       styleOverrides: {
         root: {
-          padding: '24px'
+          // padding: '24px'
         }
       }
     },
@@ -106,7 +106,6 @@ export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Com
       styleOverrides: {
         root: {
           background: bgColor,
-          borderRadius: '12px',
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.colors?.grey400
           },
@@ -120,20 +119,7 @@ export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Com
         input: {
           fontWeight: 500,
           background: bgColor,
-          padding: '15.5px 14px',
-          borderRadius: '12px',
-          '&.MuiInputBase-inputSizeSmall': {
-            padding: '10px 14px',
-            '&.MuiInputBase-inputAdornedStart': {
-              paddingLeft: 0
-            }
-          }
-        },
-        inputAdornedStart: {
-          paddingLeft: 4
-        },
-        notchedOutline: {
-          borderRadius: '12px'
+          padding: '12px'
         }
       }
     },

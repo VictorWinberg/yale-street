@@ -67,7 +67,7 @@ const NavItem = ({ item, level }: NavItemProps) => {
       component={LinkComponent}
       disabled={item.disabled}
       sx={{
-        borderRadius: '12px',
+        borderRadius: '6px',
         mb: 0.5,
         alignItems: 'flex-start',
         backgroundColor: level > 1 ? 'transparent !important' : 'inherit',

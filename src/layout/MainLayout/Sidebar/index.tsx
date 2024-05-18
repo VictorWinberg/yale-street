@@ -14,7 +14,7 @@ import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import Chip from '@/ui-component/extended/Chip';
 
-import { drawerWidth } from '@/store/constant';
+import { drawerWidth, headerHeight } from '@/store/constant';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -38,7 +38,7 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
         <PerfectScrollbar
           component="div"
           style={{
-            height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
+            height: `calc(100vh - ${headerHeight}px)`,
             paddingLeft: '16px',
             paddingRight: '16px'
           }}
@@ -63,7 +63,13 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
   );
 
   return (
-    <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
+    <Box
+      component="nav"
+      sx={{
+        flexShrink: { md: 0 },
+        width: matchUpMd ? drawerWidth : 'auto'
+      }}
+    >
       <Drawer
         variant={matchUpMd ? 'persistent' : 'temporary'}
         anchor="left"
@@ -72,11 +78,11 @@ const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
         sx={{
           '& .MuiDrawer-paper': {
             width: drawerWidth,
-            background: theme.palette.background.default,
+            background: theme.palette.grey[100],
             color: theme.palette.text.primary,
             borderRight: 'none',
             [theme.breakpoints.up('md')]: {
-              top: '88px'
+              top: `${headerHeight}px`
             }
           }
         }}
