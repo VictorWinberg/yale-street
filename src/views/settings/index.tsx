@@ -2,14 +2,16 @@
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from '@/ui-component/cards/MainCard';
 
-// ==============================|| SAMPLE PAGE ||============================== //
+// ==============================|| SETTINGS PAGE ||============================== //
 
 const Settings = () => (
-  <MainCard title="Settings">
-    <Typography variant="body2">Welcome to the Settings. This is a sample page.</Typography>
-  </MainCard>
+  <>
+    <Typography variant="h3" gutterBottom>
+      Settings
+    </Typography>
+    <Typography variant="body1">Hello, this is the settings page.</Typography>
+  </>
 );
 
 export default Settings;

@@ -2,14 +2,16 @@
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from '@/ui-component/cards/MainCard';
 
-// ==============================|| SAMPLE PAGE ||============================== //
+// ==============================|| MAILING PAGE ||============================== //
 
 const Mailing = () => (
-  <MainCard title="Mailing">
-    <Typography variant="body2">Welcome to the Mailing. This is a sample page.</Typography>
-  </MainCard>
+  <>
+    <Typography variant="h3" gutterBottom>
+      Mailing
+    </Typography>
+    <Typography variant="body1">Hello, this is the mailing page.</Typography>
+  </>
 );
 
 export default Mailing;

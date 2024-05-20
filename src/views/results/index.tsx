@@ -2,14 +2,16 @@
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from '@/ui-component/cards/MainCard';
 
-// ==============================|| SAMPLE PAGE ||============================== //
+// ==============================|| RESULTS PAGE ||============================== //
 
 const Results = () => (
-  <MainCard title="Results">
-    <Typography variant="body2">Welcome to the Results. This is a sample page.</Typography>
-  </MainCard>
+  <>
+    <Typography variant="h3" gutterBottom>
+      Results
+    </Typography>
+    <Typography variant="body1">Hello, this is the results page.</Typography>
+  </>
 );
 
 export default Results;

@@ -2,14 +2,16 @@
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from '@/ui-component/cards/MainCard';
 
-// ==============================|| SAMPLE PAGE ||============================== //
+// ==============================|| ACCOUNT PAGE ||============================== //
 
 const Account = () => (
-  <MainCard title="Account">
-    <Typography variant="body2">Welcome to the Account. This is a sample page.</Typography>
-  </MainCard>
+  <>
+    <Typography variant="h3" gutterBottom>
+      Account
+    </Typography>
+    <Typography variant="body1">Hello, this is the account page.</Typography>
+  </>
 );
 
 export default Account;

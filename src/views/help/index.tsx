@@ -2,14 +2,16 @@
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from '@/ui-component/cards/MainCard';
 
-// ==============================|| SAMPLE PAGE ||============================== //
+// ==============================|| HELP PAGE ||============================== //
 
 const Help = () => (
-  <MainCard title="Help">
-    <Typography variant="body2">Welcome to the Help. This is a sample page.</Typography>
-  </MainCard>
+  <>
+    <Typography variant="h3" gutterBottom>
+      Help
+    </Typography>
+    <Typography variant="body1">Hello, this is the help page.</Typography>
+  </>
 );
 
 export default Help;

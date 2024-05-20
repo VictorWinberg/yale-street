@@ -2,14 +2,16 @@
 import Typography from '@mui/material/Typography';
 
 // project imports
-import MainCard from '@/ui-component/cards/MainCard';
 
-// ==============================|| SAMPLE PAGE ||============================== //
+// ==============================|| ORGANIZATION PAGE ||============================== //
 
 const Organization = () => (
-  <MainCard title="Organization">
-    <Typography variant="body2">Welcome to the Organization. This is a sample page.</Typography>
-  </MainCard>
+  <>
+    <Typography variant="h3" gutterBottom>
+      Organization
+    </Typography>
+    <Typography variant="body1">Hello, this is the organization page.</Typography>
+  </>
 );
 
 export default Organization;
