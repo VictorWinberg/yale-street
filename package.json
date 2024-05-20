@@ -25,6 +25,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
+    "@mui/x-data-grid": "^7.5.0",
     "@tabler/icons-react": "^2.47.0",
     "@vitejs/plugin-react": "^4.2.1",
     "apexcharts": "^3.46.2",

@@ -99,6 +99,8 @@ export default function themeTypography(theme: ThemeOptionProps): TypographyOpti
       }
     },
     mainContent: {
+      display: 'flex',
+      flexDirection: 'column',
       width: '100%',
       minHeight: `calc(100vh - ${headerHeight}px)`,
       flexGrow: 1,

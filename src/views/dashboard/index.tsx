@@ -28,7 +28,7 @@ const DashboardWrapper = () => {
   const currentTab = tabItems.find((item) => item.url === pathname) || defaultTab;
 
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Grid container alignItems="flex-start" justifyContent="space-between">
         <Grid item sm="auto">
           <Typography variant="h3" lineHeight={1.5} gutterBottom>
@@ -55,7 +55,7 @@ const DashboardWrapper = () => {
         </Grid>
       </Grid>
       <Outlet />
-    </>
+    </Box>
   );
 };
 
