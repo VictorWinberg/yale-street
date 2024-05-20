@@ -146,7 +146,7 @@ const Breadcrumbs = ({
         {...(main.url && { component: Link, to: main.url })}
         variant="subtitle1"
         sx={linkSX}
-        color={window.location.pathname === main.url ? 'text.primary' : 'text.secondary'}
+        color={location.pathname === main.url ? 'text.primary' : 'text.secondary'}
       >
         {icons && <CollapseIcon style={iconSX} />}
         {main.title}

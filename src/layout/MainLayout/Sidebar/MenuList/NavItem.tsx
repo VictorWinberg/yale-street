@@ -80,7 +80,7 @@ const NavItem = ({ item, level }: NavItemProps) => {
       <ListItemIcon sx={{ my: 'auto', minWidth: !item.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
       <ListItemText
         primary={
-          <Typography variant={item.url === pathname ? 'h5' : 'body1'} color="inherit">
+          <Typography variant={pathname.startsWith(item.url || '') ? 'h5' : 'body1'} color="inherit">
             {item.title}
           </Typography>
         }

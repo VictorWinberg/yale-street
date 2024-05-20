@@ -9,61 +9,71 @@ import { headerHeight } from '@/store/constant';
 export default function themeTypography(theme: ThemeOptionProps): TypographyOptions {
   return {
     fontFamily: "'Poppins', sans-serif",
-    h6: {
+    h1: {
+      fontSize: '2.125rem',
+      color: theme.heading,
       fontWeight: 500,
-      color: theme.heading,
-      fontSize: '0.75rem'
-    },
-    h5: {
-      fontSize: '0.875rem',
-      color: theme.heading,
-      fontWeight: 500
-    },
-    h4: {
-      fontSize: '1rem',
-      color: theme.heading,
-      fontWeight: 500
-    },
-    h3: {
-      fontSize: '1.25rem',
-      color: theme.heading,
-      fontWeight: 500
+      lineHeight: 1.5
     },
     h2: {
       fontSize: '1.5rem',
       color: theme.heading,
-      fontWeight: 500
+      fontWeight: 500,
+      lineHeight: 1.5
     },
-    h1: {
-      fontSize: '2.125rem',
+    h3: {
+      fontSize: '1.25rem',
       color: theme.heading,
-      fontWeight: 500
+      fontWeight: 500,
+      lineHeight: 1.5
+    },
+    h4: {
+      fontSize: '1rem',
+      color: theme.heading,
+      fontWeight: 500,
+      lineHeight: 1.5
+    },
+    h5: {
+      fontSize: '0.875rem',
+      color: theme.heading,
+      fontWeight: 500,
+      lineHeight: 1.5
+    },
+    h6: {
+      fontSize: '0.75rem',
+      color: theme.heading,
+      fontWeight: 500,
+      lineHeight: 1.5
     },
     subtitle1: {
       fontSize: '0.875rem',
+      color: theme.textDark,
       fontWeight: 500,
-      color: theme.textDark
+      lineHeight: 1.5
     },
     subtitle2: {
       fontSize: '0.75rem',
+      color: theme.darkTextSecondary,
       fontWeight: 400,
-      color: theme.darkTextSecondary
+      lineHeight: 1.5
     },
     caption: {
       fontSize: '0.75rem',
       color: theme.darkTextSecondary,
-      fontWeight: 400
+      fontWeight: 400,
+      lineHeight: 1.5
     },
     body1: {
       fontSize: '0.875rem',
+      color: theme.darkTextPrimary,
       fontWeight: 400,
-      lineHeight: '1.334em'
+      lineHeight: 1.5
     },
     body2: {
-      letterSpacing: '0em',
+      fontSize: '0.75rem',
+      color: theme.darkTextSecondary,
       fontWeight: 400,
-      lineHeight: '1.5em',
-      color: theme.darkTextPrimary
+      lineHeight: 1.5
     },
     button: {
       textTransform: 'capitalize'

@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Chip, Box, Typography, Grid, Divider, useTheme } from '@mui/material';
+import { Chip, Box, Typography, Grid, useTheme } from '@mui/material';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -54,7 +54,6 @@ const DashboardWrapper = () => {
           </PerfectScrollbar>
         </Grid>
       </Grid>
-      <Divider sx={{ mb: 2 }} />
       <Outlet />
     </>
   );
