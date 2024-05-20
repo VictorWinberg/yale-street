@@ -1,4 +1,6 @@
 import { ThemeOptions, createTheme } from '@mui/material/styles';
+import { svSE } from '@mui/material/locale';
+import { svSE as dataGridSvSe } from '@mui/x-data-grid/locales';
 
 // assets
 import colors from '@/assets/scss/_themes-vars.module.scss';
@@ -73,8 +75,8 @@ export default function theme() {
     typography: themeTypography(themeOption)
   };
 
-  const theme = createTheme(themeOptions);
-  theme.components = componentStyleOverrides(themeOption);
+  const theme = createTheme(themeOptions, svSE, dataGridSvSe);
+  theme.components = { ...theme.components, ...componentStyleOverrides(themeOption) };
 
   return theme;
 }
