@@ -102,7 +102,7 @@ export default function themeTypography(theme: ThemeOptionProps): TypographyOpti
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
-      minHeight: `calc(100vh - ${headerHeight}px)`,
+      minHeight: `calc(100vh - ${headerHeight + 2}px)`,
       flexGrow: 1,
       marginTop: `${headerHeight}px`,
       padding: '40px'
