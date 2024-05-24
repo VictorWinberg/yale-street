@@ -9,9 +9,13 @@ import { Navigate } from 'react-router-dom';
 const DashboardWrapper = Loadable(lazy(() => import('@/views/dashboard')));
 const Dashboard = Loadable(lazy(() => import('@/views/dashboard/Dashboard')));
 const Assignments = Loadable(lazy(() => import('@/views/dashboard/assignments/Assignments')));
+const NewAssignment = Loadable(lazy(() => import('@/views/dashboard/assignments/NewAssignment')));
 const Contacts = Loadable(lazy(() => import('@/views/dashboard/contacts/Contacts')));
+const NewContact = Loadable(lazy(() => import('@/views/dashboard/contacts/NewContact')));
 const Companies = Loadable(lazy(() => import('@/views/dashboard/companies/Companies')));
+const NewCompany = Loadable(lazy(() => import('@/views/dashboard/companies/NewCompany')));
 const Seeking = Loadable(lazy(() => import('@/views/dashboard/seeking/Seeking')));
+const NewSeeking = Loadable(lazy(() => import('@/views/dashboard/seeking/NewSeeking')));
 const Reports = Loadable(lazy(() => import('@/views/dashboard/reports/Reports')));
 const Leads = Loadable(lazy(() => import('@/views/dashboard/leads/Leads')));
 
@@ -76,6 +80,22 @@ const MainRoutes = {
           element: <Leads />
         }
       ]
+    },
+    {
+      path: 'assignments/new',
+      element: <NewAssignment />
+    },
+    {
+      path: 'contacts/new',
+      element: <NewContact />
+    },
+    {
+      path: 'companies/new',
+      element: <NewCompany />
+    },
+    {
+      path: 'seeking/new',
+      element: <NewSeeking />
     },
     {
       path: 'mailing',

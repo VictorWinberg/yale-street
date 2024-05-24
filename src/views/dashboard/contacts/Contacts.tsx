@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { Box, Button } from '@mui/material';
@@ -66,7 +67,7 @@ const Contacts = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Box>
-        <Button variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+        <Button component={Link} to="/contacts/new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
           Lägg till kontakt
         </Button>
       </Box>

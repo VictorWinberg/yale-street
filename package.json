@@ -75,12 +75,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "prettier --write",
-      "tsc --noEmit",
-      "eslint --cache --fix --max-warnings 0"
-    ]
   }
 }

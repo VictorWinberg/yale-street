@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { Box, Button } from '@mui/material';
@@ -88,7 +89,7 @@ const Assignments = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Box>
-        <Button variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+        <Button component={Link} to="/assignments/new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
           Lägg till uppdrag
         </Button>
       </Box>
