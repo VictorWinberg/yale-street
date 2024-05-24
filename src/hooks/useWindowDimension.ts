@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+console.log('hi');
 
 function useWindowDimension() {
   const [dimension, setDimension] = useState([window.innerWidth, window.innerHeight]);
@@ -15,13 +16,13 @@ function useWindowDimension() {
   return dimension;
 }
 
-const debounce = <T extends (...args: any[]) => any>(callback: T, waitFor: number) => {
+const debounce = <T extends (...args: unknown[]) => unknown>(callback: T, waitFor: number) => {
   let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>): ReturnType<T> => {
-    let result: any;
+  return (...args: Parameters<T>): ReturnType<T> | undefined => {
+    let result: ReturnType<T> | undefined;
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      result = callback(...args);
+      result = callback(...args) as ReturnType<T>;
     }, waitFor);
     return result;
   };

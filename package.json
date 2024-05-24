@@ -14,7 +14,8 @@
     "lint:vite": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start": "pnpm run dev",
-    "type": "tsc"
+    "type": "tsc",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -55,6 +56,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.4",
     "prettier": "^3.2.5",
     "react-error-overlay": "6.0.11",
     "sass": "^1.71.1",
@@ -71,6 +74,12 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --cache --fix --max-warnings 0"
     ]
   }
 }
