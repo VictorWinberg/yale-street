@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react';
-import { flushSync } from 'react-dom';
 
 // material-ui
 import { Box, Divider } from '@mui/material';
-import { DataGrid, GridColDef, useGridApiRef } from '@mui/x-data-grid';
+import { GridColDef } from '@mui/x-data-grid';
 
 // project imports
-import useWindowDimension from '@/hooks/useWindowDimension';
+import DataTable from '@/ui-component/DataTable';
 
 // ==============================|| ASSIGNMENTS PAGE ||============================== //
+
+interface Data {
+  id: number;
+  name: string;
+  company: string;
+  email: string;
+  status: string;
+  fee: number;
+}
 
 const columns: GridColDef[] = [
   { field: 'name', headerName: 'Uppdragsnamn' },
@@ -39,16 +47,7 @@ const columns: GridColDef[] = [
   }
 ];
 
-interface Data {
-  id: number;
-  name: string;
-  company: string;
-  email: string;
-  status: string;
-  fee: number;
-}
-
-const data = [
+const fakeData: Data[] = [
   {
     id: 1,
     name: 'Victor Winberg',
@@ -69,50 +68,24 @@ const data = [
 ];
 
 const Assignments = () => {
-  const apiRef = useGridApiRef();
+  const [data, setData] = useState<Data[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [width, _height] = useWindowDimension();
-  const [isLoading, setIsLoading] = useState(false);
-
+  // Replace with real data fetching query library
   useEffect(() => {
-    setIsLoading(true);
-
     const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      flushSync(() => {
-        setIsLoading(false);
-        apiRef.current.setRows(data);
-        apiRef.current.autosizeColumns({ expand: true });
-      });
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      setIsLoading(false);
+      setData(fakeData);
     };
-    fetchData();
-  }, [apiRef]);
 
-  useEffect(() => {
-    apiRef.current.autosizeColumns({ expand: true });
-  }, [apiRef, width]);
+    fetchData();
+  }, []);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Divider sx={{ my: 2 }} />
-      <DataGrid
-        apiRef={apiRef}
-        columns={columns}
-        autoPageSize
-        loading={isLoading}
-        sx={{
-          mx: -1,
-          '&, [class^=MuiDataGrid]': { border: 'none' },
-          '& .MuiDataGrid-columnHeader': {
-            color: '#000'
-          },
-          '& .MuiDataGrid-cell:focus-within': {
-            outline: 'none !important'
-          }
-        }}
-        onRowClick={console.log}
-      />
+      <DataTable rows={data} columns={columns} loading={isLoading} onRowClick={console.log} />
     </Box>
   );
 };

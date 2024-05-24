@@ -62,21 +62,11 @@ export default function theme() {
 
   const themeOptions: ThemeOptions = {
     direction: 'ltr',
-    mixins: {
-      toolbar: {
-        minHeight: '48px',
-        padding: '16px',
-        '@media (min-width: 600px)': {
-          minHeight: '48px'
-        }
-      }
-    },
+    mixins: {},
+    components: componentStyleOverrides(themeOption),
     palette: themePalette(themeOption),
     typography: themeTypography(themeOption)
   };
 
-  const theme = createTheme(themeOptions, svSE, dataGridSvSe);
-  theme.components = { ...theme.components, ...componentStyleOverrides(themeOption) };
-
-  return theme;
+  return createTheme(themeOptions, svSE, dataGridSvSe);
 }
