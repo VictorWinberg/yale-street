@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
@@ -119,4 +117,4 @@ const MenuCard = () => {
   );
 };
 
-export default memo(MenuCard);
+export default MenuCard;
