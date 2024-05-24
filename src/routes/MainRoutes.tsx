@@ -8,26 +8,26 @@ import { Navigate } from 'react-router-dom';
 // dashboard routing
 const DashboardWrapper = Loadable(lazy(() => import('@/views/dashboard')));
 const Dashboard = Loadable(lazy(() => import('@/views/dashboard/Dashboard')));
-const Assignments = Loadable(lazy(() => import('@/views/dashboard/Assignments')));
-const Contacts = Loadable(lazy(() => import('@/views/dashboard/Contacts')));
-const Companies = Loadable(lazy(() => import('@/views/dashboard/Companies')));
-const Seeking = Loadable(lazy(() => import('@/views/dashboard/Seeking')));
-const Reports = Loadable(lazy(() => import('@/views/dashboard/Reports')));
-const Leads = Loadable(lazy(() => import('@/views/dashboard/Leads')));
+const Assignments = Loadable(lazy(() => import('@/views/dashboard/assignments/Assignments')));
+const Contacts = Loadable(lazy(() => import('@/views/dashboard/contacts/Contacts')));
+const Companies = Loadable(lazy(() => import('@/views/dashboard/companies/Companies')));
+const Seeking = Loadable(lazy(() => import('@/views/dashboard/seeking/Seeking')));
+const Reports = Loadable(lazy(() => import('@/views/dashboard/reports/Reports')));
+const Leads = Loadable(lazy(() => import('@/views/dashboard/leads/Leads')));
 
 // main routing
-const Mailing = Loadable(lazy(() => import('@/views/mailing')));
-const Results = Loadable(lazy(() => import('@/views/results')));
-const Organization = Loadable(lazy(() => import('@/views/organization')));
-const Modules = Loadable(lazy(() => import('@/views/modules')));
+const Mailing = Loadable(lazy(() => import('@/views/mailing/Mailing')));
+const Results = Loadable(lazy(() => import('@/views/results/Results')));
+const Organization = Loadable(lazy(() => import('@/views/organization/Organization')));
+const Modules = Loadable(lazy(() => import('@/views/modules/Modules')));
 
 // other routing
-const Settings = Loadable(lazy(() => import('@/views/settings')));
-const Account = Loadable(lazy(() => import('@/views/account')));
-const Help = Loadable(lazy(() => import('@/views/help')));
+const Settings = Loadable(lazy(() => import('@/views/settings/Settings')));
+const Account = Loadable(lazy(() => import('@/views/account/Account')));
+const Help = Loadable(lazy(() => import('@/views/help/Help')));
 
 // dev routing
-const Dev = Loadable(lazy(() => import('@/views/dev')));
+const Dev = Loadable(lazy(() => import('@/views/dev/Dev')));
 const UtilsTypography = Loadable(lazy(() => import('@/views/dev/utils/Typography')));
 const UtilsColor = Loadable(lazy(() => import('@/views/dev/utils/Color')));
 const UtilsShadow = Loadable(lazy(() => import('@/views/dev/utils/Shadow')));

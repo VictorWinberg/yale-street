@@ -1,28 +1,31 @@
 import { useEffect, useState } from 'react';
 
 // material-ui
-import { Box, Divider } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
 
-// ==============================|| CONTACTS PAGE ||============================== //
+// assets
+import { Add } from '@mui/icons-material';
+
+// ==============================|| COMPANIES PAGE ||============================== //
 
 interface Data {
   id: number;
   name: string;
   company: string;
-  email: string;
-  phone: string;
+  organizationNumber: string;
+  status: string;
   updatedAt: string;
 }
 
 const columns: GridColDef[] = [
-  { field: 'name', headerName: 'Uppdragsnamn' },
+  { field: 'name', headerName: 'Bolagsnamn' },
   { field: 'company', headerName: 'Bolag' },
-  { field: 'email', headerName: 'Email' },
-  { field: 'phone', headerName: 'Telefonnummer' },
+  { field: 'organizationNumber', headerName: 'Org. Nummer' },
+  { field: 'status', headerName: 'Status' },
   { field: 'updatedAt', headerName: 'Senast uppdaterad', headerAlign: 'right', align: 'right' }
 ];
 
@@ -31,21 +34,21 @@ const fakeData: Data[] = [
     id: 1,
     name: 'Victor Winberg',
     company: 'Netcompany',
-    email: 'victor.winberg@netcompany.com',
-    phone: '+46702483978',
+    organizationNumber: '556677-8899',
+    status: 'Prospektarbete',
     updatedAt: '2024-01-01'
   },
   {
     id: 2,
     name: 'Sebastian Eriksson',
     company: 'Newsec',
-    email: 'sebastian.eriksson@newsec.se',
-    phone: '+46704278490',
+    organizationNumber: '556677-8899',
+    status: 'Prospektarbete',
     updatedAt: '2024-04-01'
   }
 ];
 
-const Contacts = () => {
+const Companies = () => {
   const [data, setData] = useState<Data[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -62,10 +65,14 @@ const Contacts = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-      <Divider sx={{ my: 2 }} />
+      <Box>
+        <Button variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+          Lägg till bolag
+        </Button>
+      </Box>
       <DataTable rows={data} columns={columns} loading={isLoading} onRowClick={console.log} />
     </Box>
   );
 };
 
-export default Contacts;
+export default Companies;

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
 // material-ui
-import { Box, Divider } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
+
+// assets
+import { Add } from '@mui/icons-material';
 
 // ==============================|| SEEKING PAGE ||============================== //
 
@@ -66,7 +69,11 @@ const Seeking = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-      <Divider sx={{ my: 2 }} />
+      <Box>
+        <Button variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+          Lägg till sökande
+        </Button>
+      </Box>
       <DataTable rows={data} columns={columns} loading={isLoading} onRowClick={console.log} />
     </Box>
   );
