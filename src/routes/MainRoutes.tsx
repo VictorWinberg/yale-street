@@ -57,19 +57,55 @@ const MainRoutes = {
         },
         {
           path: 'assignments',
-          element: <Assignments />
+          children: [
+            {
+              path: '',
+              element: <Assignments />
+            },
+            {
+              path: 'new',
+              element: <NewAssignment />
+            }
+          ]
         },
         {
           path: 'contacts',
-          element: <Contacts />
+          children: [
+            {
+              path: '',
+              element: <Contacts />
+            },
+            {
+              path: 'new',
+              element: <NewContact />
+            }
+          ]
         },
         {
           path: 'companies',
-          element: <Companies />
+          children: [
+            {
+              path: '',
+              element: <Companies />
+            },
+            {
+              path: 'new',
+              element: <NewCompany />
+            }
+          ]
         },
         {
           path: 'seeking',
-          element: <Seeking />
+          children: [
+            {
+              path: '',
+              element: <Seeking />
+            },
+            {
+              path: 'new',
+              element: <NewSeeking />
+            }
+          ]
         },
         {
           path: 'reports',
@@ -80,22 +116,6 @@ const MainRoutes = {
           element: <Leads />
         }
       ]
-    },
-    {
-      path: 'assignments/new',
-      element: <NewAssignment />
-    },
-    {
-      path: 'contacts/new',
-      element: <NewContact />
-    },
-    {
-      path: 'companies/new',
-      element: <NewCompany />
-    },
-    {
-      path: 'seeking/new',
-      element: <NewSeeking />
     },
     {
       path: 'mailing',

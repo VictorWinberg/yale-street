@@ -12,7 +12,9 @@ import { Formik } from 'formik';
 const NewContact = () => {
   return (
     <>
-      <Typography variant="h3">Lägg till kontakt</Typography>
+      <Typography variant="h4" color="primary">
+        Lägg till kontakt
+      </Typography>
       <Box sx={{ my: 1 }} />
       <Formik initialValues={{}} onSubmit={console.log}>
         {({ handleSubmit, isSubmitting }) => (

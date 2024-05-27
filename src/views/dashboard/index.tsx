@@ -25,7 +25,7 @@ const DashboardWrapper = () => {
   const { pathname } = useLocation();
   const theme = useTheme();
 
-  const currentTab = tabItems.find((item) => item.url === pathname) || defaultTab;
+  const currentTab = tabItems.find((item) => pathname.startsWith(item.url)) || defaultTab;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -45,7 +45,7 @@ const DashboardWrapper = () => {
                   label={item.title}
                   to={item.url === currentTab.url ? defaultTab.url : item.url}
                   color="primary"
-                  variant={item.url === pathname ? 'filled' : 'outlined'}
+                  variant={pathname.startsWith(item.url) ? 'filled' : 'outlined'}
                   sx={{ borderColor: theme.palette.grey[200], px: 1, mb: 1 }}
                   clickable
                 />

@@ -67,7 +67,7 @@ const Companies = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Box>
-        <Button component={Link} to="/companies/new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+        <Button component={Link} to="new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
           Lägg till bolag
         </Button>
       </Box>

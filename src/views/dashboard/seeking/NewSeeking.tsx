@@ -12,7 +12,9 @@ import { Formik } from 'formik';
 const NewSeeking = () => {
   return (
     <>
-      <Typography variant="h3">Lägg till intresseanmälan</Typography>
+      <Typography variant="h4" color="primary">
+        Lägg till intresseanmälan
+      </Typography>
       <Box sx={{ my: 1 }} />
       <Formik initialValues={{}} onSubmit={console.log}>
         {({ handleSubmit, isSubmitting }) => (

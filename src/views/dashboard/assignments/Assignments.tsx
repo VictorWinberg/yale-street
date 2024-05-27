@@ -89,7 +89,7 @@ const Assignments = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Box>
-        <Button component={Link} to="/assignments/new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+        <Button component={Link} to="new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
           Lägg till uppdrag
         </Button>
       </Box>

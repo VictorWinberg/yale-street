@@ -12,7 +12,9 @@ import { Formik } from 'formik';
 const NewCompany = () => {
   return (
     <>
-      <Typography variant="h3">Lägg till företag</Typography>
+      <Typography variant="h4" color="primary">
+        Lägg till företag
+      </Typography>
       <Box sx={{ my: 1 }} />
       <Formik initialValues={{}} onSubmit={console.log}>
         {({ handleSubmit, isSubmitting }) => (

@@ -12,7 +12,9 @@ import { Formik } from 'formik';
 const NewAssignment = () => {
   return (
     <>
-      <Typography variant="h3">Lägg till uppdrag</Typography>
+      <Typography variant="h4" color="primary">
+        Lägg till uppdrag
+      </Typography>
       <Box sx={{ my: 1 }} />
       <Formik initialValues={{}} onSubmit={console.log}>
         {({ handleSubmit, isSubmitting }) => (
