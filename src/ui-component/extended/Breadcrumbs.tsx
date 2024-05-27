@@ -129,7 +129,7 @@ const Breadcrumbs = ({
 
   // item separator
   const SeparatorIcon = separator;
-  const separatorIcon = <SeparatorIcon stroke={1.5} size="16px" />;
+  const separatorIcon = <SeparatorIcon stroke={1.5} size="1rem" />;
 
   let mainContent;
   let itemContent;

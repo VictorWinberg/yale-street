@@ -65,10 +65,10 @@ const MobileSearch = ({ value, setValue, popupState }: MobileSearchProps) => {
       id="input-search-header"
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      placeholder="Search"
+      placeholder="Sök"
       startAdornment={
         <InputAdornment position="start">
-          <IconSearch stroke={1.5} size="16px" />
+          <IconSearch stroke={1.5} size="1.5rem" />
         </InputAdornment>
       }
       endAdornment={
@@ -98,7 +98,7 @@ const MobileSearch = ({ value, setValue, popupState }: MobileSearchProps) => {
       }
       aria-describedby="search-helper-text"
       inputProps={{ 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } }}
-      sx={{ width: '100%', ml: 0.5, px: 2, bgcolor: 'background.paper' }}
+      sx={{ width: '100%', ml: 0.5, bgcolor: 'background.paper' }}
     />
   );
 };
@@ -111,30 +111,24 @@ const SearchSection = () => {
   return (
     <>
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        <PopupState variant="popper" popupId="demo-popup-popper">
+        <PopupState variant="popper" popupId="popup-search">
           {(popupState) => (
             <>
               <Box sx={{ ml: 2 }}>
                 <HeaderAvatar {...bindToggle(popupState)}>
-                  <IconSearch stroke={1.5} size="19.2px" />
+                  <IconSearch stroke={1.5} size="1.2rem" />
                 </HeaderAvatar>
               </Box>
-              <Popper
-                {...bindPopper(popupState)}
-                transition
-                sx={{ zIndex: 1100, width: '99%', top: '-55px !important', px: { xs: 1.25, sm: 1.5 } }}
-              >
+              <Popper {...bindPopper(popupState)} transition sx={{ zIndex: 1100, width: '99%', top: '-43px !important', px: { xs: 1.25 } }}>
                 {({ TransitionProps }) => (
                   <>
                     <Transitions type="zoom" {...TransitionProps}>
-                      <Card sx={{ bgcolor: 'background.default', border: 0, boxShadow: 'none' }}>
-                        <Box sx={{ p: 2 }}>
-                          <Grid container alignItems="center" justifyContent="space-between">
-                            <Grid item xs>
-                              <MobileSearch value={value} setValue={setValue} popupState={popupState} />
-                            </Grid>
+                      <Card sx={{ bgcolor: 'background.default', border: 0, boxShadow: 'none', px: 1 }}>
+                        <Grid container alignItems="center" justifyContent="space-between">
+                          <Grid item xs>
+                            <MobileSearch value={value} setValue={setValue} popupState={popupState} />
                           </Grid>
-                        </Box>
+                        </Grid>
                       </Card>
                     </Transitions>
                   </>
@@ -152,7 +146,7 @@ const SearchSection = () => {
           placeholder="Sök"
           endAdornment={
             <InputAdornment position="end">
-              <IconSearch stroke={1.5} size="16px" />
+              <IconSearch stroke={1.5} size="1rem" />
             </InputAdornment>
           }
           disableUnderline

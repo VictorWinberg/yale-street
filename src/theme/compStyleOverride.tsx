@@ -2,7 +2,6 @@ import { Components } from '@mui/material';
 import { ThemeOptionProps } from '.';
 
 export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Components<T> {
-  const bgColor = theme.colors?.grey50;
   return {
     MuiButton: {
       styleOverrides: {
@@ -29,24 +28,9 @@ export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Com
       styleOverrides: {
         root: {
           color: theme.colors?.textDark
-          // padding: '24px'
         },
         title: {
           fontSize: '1.125rem'
-        }
-      }
-    },
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          // padding: '24px'
-        }
-      }
-    },
-    MuiCardActions: {
-      styleOverrides: {
-        root: {
-          // padding: '24px'
         }
       }
     },
@@ -96,30 +80,8 @@ export default function componentStyleOverrides<T>(theme: ThemeOptionProps): Com
         input: {
           color: theme.textDark,
           '&::placeholder': {
-            color: theme.darkTextSecondary,
-            fontSize: '0.875rem'
+            color: theme.darkTextSecondary
           }
-        }
-      }
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          background: bgColor,
-          '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.colors?.grey400
-          },
-          '&:hover $notchedOutline': {
-            borderColor: theme.colors?.primaryLight
-          },
-          '&.MuiInputBase-multiline': {
-            padding: 1
-          }
-        },
-        input: {
-          fontWeight: 500,
-          background: bgColor,
-          padding: '12px'
         }
       }
     },
