@@ -15,9 +15,9 @@ import { Add } from '@mui/icons-material';
 
 type DataType = ReturnType<typeof useAssignments>['data'][number];
 const columns: GridColDef<DataType>[] = [
-  { field: 'assignmentName', headerName: 'Uppdragsnamn' },
-  { field: 'companyName', headerName: 'Bolag' },
-  { field: 'email', headerName: 'Email' },
+  { field: 'assignmentName', headerName: 'Uppdragsnamn', editable: true },
+  { field: 'companyName', headerName: 'Bolag', editable: true },
+  { field: 'email', headerName: 'Email', editable: true },
   {
     field: 'responsible',
     headerName: 'Ansvarig',
@@ -27,12 +27,14 @@ const columns: GridColDef<DataType>[] = [
   {
     field: 'status',
     headerName: 'Status',
-    sortable: false
+    sortable: false,
+    editable: true
   },
   {
     field: 'fee',
     headerName: 'Arvode',
     type: 'number',
+    editable: true,
     renderCell: ({ value }) =>
       Number(value).toLocaleString('sv-SE', {
         style: 'currency',
@@ -49,11 +51,25 @@ const Assignments = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Box>
-        <Button component={Link} to="new" variant="outlined" size="small" startIcon={<Add />} sx={{ textTransform: 'none' }}>
+        <Button
+          component={Link}
+          to="new"
+          variant="outlined"
+          size="small"
+          startIcon={<Add />}
+          sx={{ textTransform: 'none' }}
+        >
           Lägg till uppdrag
         </Button>
       </Box>
-      <DataTable rows={data} columns={columns} getRowId={(row) => row.assignmentId} loading={isLoading} onRowClick={console.log} />
+      <DataTable
+        rows={data}
+        columns={columns}
+        getRowId={(row) => row.assignmentId}
+        loading={isLoading}
+        onRowClick={console.log}
+        showActions
+      />
     </Box>
   );
 };
