@@ -59,6 +59,7 @@ const Actions = (apiRef: ReturnType<typeof useGridApiRef>): GridColDef => {
     type: 'actions',
     headerName: 'Actions',
     cellClassName: 'actions',
+    minWidth: 100,
     getActions: ({ id }) => {
       const { getRowMode, startRowEditMode, stopRowEditMode } = apiRef.current;
       const isInEditMode = getRowMode(id) === GridRowModes.Edit;
