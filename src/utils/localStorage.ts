@@ -3,9 +3,9 @@ type StorageValue = string | number | boolean | object | bigint;
 /**
  * Smartly reads value from localStorage
  */
-export function localStorageGet(name: string, defaultValue: unknown = ''): StorageValue {
+export function localStorageGet<T extends StorageValue>(name: string, defaultValue?: T): T | undefined {
   const valueFromStore = localStorage.getItem(name);
-  if (valueFromStore === null) return defaultValue as StorageValue; // No value in store, return default one
+  if (valueFromStore === null) return defaultValue; // No value in store, return default one
 
   try {
     const jsonParsed = JSON.parse(valueFromStore);
@@ -13,16 +13,14 @@ export function localStorageGet(name: string, defaultValue: unknown = ''): Stora
       return jsonParsed; // We successfully parse JS value from the store
     }
   } catch (error) {
-    // Do nothing, we will return string value as it is
+    throw new Error(`Failed to parse value from localStorage: ${error}`);
   }
-
-  return valueFromStore; // Return string value as it is
 }
 
 /**
  * Smartly writes value into localStorage
  */
-export function localStorageSet(name: string, value: unknown) {
+export function localStorageSet<T>(name: string, value: T) {
   if (typeof value === 'undefined') {
     return; // Do not store undefined values
   }

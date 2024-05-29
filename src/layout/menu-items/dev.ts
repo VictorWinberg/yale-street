@@ -58,6 +58,14 @@ const dev: MenuItem = {
       breadcrumbs: false
     },
     {
+      id: 'default',
+      title: 'Dev Page',
+      type: 'item',
+      url: '/dev/sample',
+      icon: icons.IconBrandChrome,
+      breadcrumbs: true
+    },
+    {
       id: 'authentication',
       title: 'Authentication',
       type: 'collapse',

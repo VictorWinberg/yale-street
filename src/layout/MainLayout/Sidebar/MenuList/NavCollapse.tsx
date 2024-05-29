@@ -35,8 +35,9 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const handleClick = () => {
     setOpen(!open);
     setSelected(!selected ? menu.id : null);
-    if (menu.children?.[0]?.id === 'default') {
-      navigate(menu.children[0].url!);
+    const defaultChild = menu.children?.find((item) => item.id === 'default');
+    if (defaultChild?.url) {
+      navigate(defaultChild.url);
     }
   };
 

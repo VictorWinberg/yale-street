@@ -149,7 +149,7 @@ const MainRoutes = {
       path: 'dev',
       children: [
         {
-          path: '',
+          path: 'sample',
           element: <Dev />
         },
         {

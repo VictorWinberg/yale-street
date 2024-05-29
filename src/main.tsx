@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 // project imports
 import App from './App';
+import './api/DummyDB';
 
 // style + assets
 import '@/assets/scss/style.scss';

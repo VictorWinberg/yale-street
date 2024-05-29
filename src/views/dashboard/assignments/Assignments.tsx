@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -7,30 +6,23 @@ import { GridColDef } from '@mui/x-data-grid';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
+import useAssignments from '@/hooks/useAssignments';
 
 // assets
 import { Add } from '@mui/icons-material';
 
 // ==============================|| ASSIGNMENTS PAGE ||============================== //
 
-interface Data {
-  id: number;
-  name: string;
-  company: string;
-  email: string;
-  status: string;
-  fee: number;
-}
-
-const columns: GridColDef[] = [
-  { field: 'name', headerName: 'Uppdragsnamn' },
-  { field: 'company', headerName: 'Bolag' },
+type DataType = ReturnType<typeof useAssignments>['data'][number];
+const columns: GridColDef<DataType>[] = [
+  { field: 'assignmentName', headerName: 'Uppdragsnamn' },
+  { field: 'companyName', headerName: 'Bolag' },
   { field: 'email', headerName: 'Email' },
   {
     field: 'responsible',
     headerName: 'Ansvarig',
     sortable: false,
-    valueGetter: (_value, row) => `${row.name || ''}`
+    valueGetter: (_value, row) => `${row.assignmentName || ''}`
   },
   {
     field: 'status',
@@ -51,40 +43,8 @@ const columns: GridColDef[] = [
   }
 ];
 
-const fakeData: Data[] = [
-  {
-    id: 1,
-    name: 'Victor Winberg',
-    company: 'Netcompany',
-    email: 'victor.winberg@netcompany.com',
-    status: 'Prospektarbete',
-    fee: 500000
-  },
-  {
-    id: 2,
-    name: 'Sebastian Eriksson',
-    company: 'Newsec',
-    email: 'sebastian.eriksson@newsec.se',
-    status: 'Prospektarbete',
-    fee: 1500000
-  },
-  { id: 3, name: 'Jan Zubac', company: 'Jayway', email: 'jan.zubac@jayway.se', status: 'Marknadsföring', fee: 2500000 }
-];
-
 const Assignments = () => {
-  const [data, setData] = useState<Data[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Replace with real data fetching query library
-  useEffect(() => {
-    const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      setIsLoading(false);
-      setData(fakeData);
-    };
-
-    fetchData();
-  }, []);
+  const { data, isLoading } = useAssignments();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -93,7 +53,7 @@ const Assignments = () => {
           Lägg till uppdrag
         </Button>
       </Box>
-      <DataTable rows={data} columns={columns} loading={isLoading} onRowClick={console.log} />
+      <DataTable rows={data} columns={columns} getRowId={(row) => row.assignmentId} loading={isLoading} onRowClick={console.log} />
     </Box>
   );
 };

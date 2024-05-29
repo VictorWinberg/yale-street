@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-console.log('hi');
 
 function useWindowDimension() {
   const [dimension, setDimension] = useState([window.innerWidth, window.innerHeight]);
