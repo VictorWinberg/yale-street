@@ -1,7 +1,7 @@
-import initSqlJs, { SqlJsStatic, Database } from 'sql.js';
+import initSqlJs, { SqlJsStatic, Database, SqlValue } from 'sql.js';
 import camelcaseKeys from 'camelcase-keys';
 
-import { localStorageSet } from '@/utils';
+import { localStorageSet, toSnakeCase } from '@/utils';
 
 import schema from './schema.sql?raw';
 import seed from './seed.sql?raw';
@@ -34,6 +34,31 @@ export function query<T extends Record<string, unknown>>(sql: string): T[] {
   const result = res.values.map((value) => res.columns.reduce((acc, col, i) => ({ ...acc, [col]: value[i] }), {} as T));
   return camelcaseKeys(result, { deep: true }) as T[];
 }
+
+export const runParameterizedQuery = <T extends Record<string, SqlValue>>(table: string, data: T) => {
+  const keys = Object.keys(data);
+  const values = Object.values(data);
+
+  const columns = keys.map((key) => `"${toSnakeCase(key)}"`).join(', ');
+  const placeholders = keys.map((key) => `:${key}`).join(', ');
+
+  const queryText = `
+    INSERT INTO ${table} (${columns})
+    VALUES (${placeholders});
+  `;
+
+  const params = keys.reduce(
+    (acc, key, index) => {
+      acc[`:${key}`] = values[index];
+      return acc;
+    },
+    {} as Record<string, SqlValue>
+  );
+
+  const stmt = db.prepare(queryText);
+  stmt.run(params);
+  stmt.free(); // Free the memory used by the statement
+};
 
 export function save() {
   const binaryArray = db.export();

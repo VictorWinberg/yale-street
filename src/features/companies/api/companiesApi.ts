@@ -8,6 +8,8 @@ export type Company = {
   phone: string;
   email: string;
   website: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export const fetchCompanies = async () => {

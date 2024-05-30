@@ -10,7 +10,9 @@ export type Contact = {
   position: string;
   address: string;
   notes: string;
-  lastInteractionDate: string; // ISO date string
+  lastInteractionDate: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export const fetchContacts = async () => {
