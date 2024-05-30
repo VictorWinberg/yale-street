@@ -1,7 +1,15 @@
 import { useEffect } from 'react';
 
 // material-ui
-import { DataGrid, DataGridProps, GridActionsCellItem, GridColDef, GridRowModel, GridRowModes, useGridApiRef } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  DataGridProps,
+  GridActionsCellItem,
+  GridColDef,
+  GridRowModel,
+  GridRowModes,
+  useGridApiRef
+} from '@mui/x-data-grid';
 
 // project imports
 import useWindowDimension from '@/hooks/useWindowDimension';

@@ -6,36 +6,36 @@ import Loadable from '@/ui-component/Loadable';
 import { Navigate } from 'react-router-dom';
 
 // dashboard routing
-const DashboardWrapper = Loadable(lazy(() => import('@/views/dashboard')));
-const Dashboard = Loadable(lazy(() => import('@/views/dashboard/Dashboard')));
-const Assignments = Loadable(lazy(() => import('@/views/dashboard/assignments/Assignments')));
-const NewAssignment = Loadable(lazy(() => import('@/views/dashboard/assignments/NewAssignment')));
-const Contacts = Loadable(lazy(() => import('@/views/dashboard/contacts/Contacts')));
-const NewContact = Loadable(lazy(() => import('@/views/dashboard/contacts/NewContact')));
-const Companies = Loadable(lazy(() => import('@/views/dashboard/companies/Companies')));
-const NewCompany = Loadable(lazy(() => import('@/views/dashboard/companies/NewCompany')));
-const Seeking = Loadable(lazy(() => import('@/views/dashboard/seeking/Seeking')));
-const NewSeeking = Loadable(lazy(() => import('@/views/dashboard/seeking/NewSeeking')));
-const Reports = Loadable(lazy(() => import('@/views/dashboard/reports/Reports')));
-const Leads = Loadable(lazy(() => import('@/views/dashboard/leads/Leads')));
+const DashboardWrapper = Loadable(lazy(() => import('@/features/dashboard/components/DashboardWrapper')));
+const DashboardPage = Loadable(lazy(() => import('@/features/dashboard/pages/DashboardPage')));
+const AssignmentsPage = Loadable(lazy(() => import('@/features/assignments/pages/AssignmentsPage')));
+const NewAssignment = Loadable(lazy(() => import('@/features/assignments/components/NewAssignment')));
+const ContactsPage = Loadable(lazy(() => import('@/features/contacts/pages/ContactsPage')));
+const NewContact = Loadable(lazy(() => import('@/features/contacts/components/NewContact')));
+const CompaniesPage = Loadable(lazy(() => import('@/features/companies/pages/CompaniesPage')));
+const NewCompany = Loadable(lazy(() => import('@/features/companies/components/NewCompany')));
+const Seeking = Loadable(lazy(() => import('@/dummy-views/seeking/Seeking')));
+const NewSeeking = Loadable(lazy(() => import('@/dummy-views/seeking/NewSeeking')));
+const Reports = Loadable(lazy(() => import('@/dummy-views/reports/Reports')));
+const Leads = Loadable(lazy(() => import('@/dummy-views/leads/Leads')));
 
 // main routing
-const Mailing = Loadable(lazy(() => import('@/views/mailing/Mailing')));
-const Results = Loadable(lazy(() => import('@/views/results/Results')));
-const Organization = Loadable(lazy(() => import('@/views/organization/Organization')));
-const Modules = Loadable(lazy(() => import('@/views/modules/Modules')));
+const Mailing = Loadable(lazy(() => import('@/dummy-views/mailing/Mailing')));
+const Results = Loadable(lazy(() => import('@/dummy-views/results/Results')));
+const Organization = Loadable(lazy(() => import('@/dummy-views/organization/Organization')));
+const Modules = Loadable(lazy(() => import('@/dummy-views/modules/Modules')));
 
 // other routing
-const Settings = Loadable(lazy(() => import('@/views/settings/Settings')));
-const Account = Loadable(lazy(() => import('@/views/account/Account')));
-const Help = Loadable(lazy(() => import('@/views/help/Help')));
+const Settings = Loadable(lazy(() => import('@/dummy-views/settings/Settings')));
+const Account = Loadable(lazy(() => import('@/dummy-views/account/Account')));
+const Help = Loadable(lazy(() => import('@/dummy-views/help/Help')));
 
 // dev routing
-const Dev = Loadable(lazy(() => import('@/views/dev/Dev')));
-const UtilsTypography = Loadable(lazy(() => import('@/views/dev/utils/Typography')));
-const UtilsColor = Loadable(lazy(() => import('@/views/dev/utils/Color')));
-const UtilsShadow = Loadable(lazy(() => import('@/views/dev/utils/Shadow')));
-const SamplePage = Loadable(lazy(() => import('@/views/dev/SamplePage')));
+const DevPage = Loadable(lazy(() => import('@/features/dev/pages/DevPage')));
+const TypographyPage = Loadable(lazy(() => import('@/features/dev/pages/TypographyPage')));
+const ColorPage = Loadable(lazy(() => import('@/features/dev/pages/ColorPage')));
+const ShadowPage = Loadable(lazy(() => import('@/features/dev/pages/ShadowPage')));
+const SamplePage = Loadable(lazy(() => import('@/features/dev/pages/SamplePage')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -53,14 +53,14 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element: <Dashboard />
+          element: <DashboardPage />
         },
         {
           path: 'assignments',
           children: [
             {
               path: '',
-              element: <Assignments />
+              element: <AssignmentsPage />
             },
             {
               path: 'new',
@@ -73,7 +73,7 @@ const MainRoutes = {
           children: [
             {
               path: '',
-              element: <Contacts />
+              element: <ContactsPage />
             },
             {
               path: 'new',
@@ -86,7 +86,7 @@ const MainRoutes = {
           children: [
             {
               path: '',
-              element: <Companies />
+              element: <CompaniesPage />
             },
             {
               path: 'new',
@@ -150,19 +150,19 @@ const MainRoutes = {
       children: [
         {
           path: 'sample',
-          element: <Dev />
+          element: <DevPage />
         },
         {
           path: 'util-typography',
-          element: <UtilsTypography />
+          element: <TypographyPage />
         },
         {
           path: 'util-color',
-          element: <UtilsColor />
+          element: <ColorPage />
         },
         {
           path: 'util-shadow',
-          element: <UtilsShadow />
+          element: <ShadowPage />
         },
         {
           path: 'sample-page',

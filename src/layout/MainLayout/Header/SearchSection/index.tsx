@@ -119,7 +119,11 @@ const SearchSection = () => {
                   <IconSearch stroke={1.5} size="1.2rem" />
                 </HeaderAvatar>
               </Box>
-              <Popper {...bindPopper(popupState)} transition sx={{ zIndex: 1100, width: '99%', top: '-43px !important', px: { xs: 1.25 } }}>
+              <Popper
+                {...bindPopper(popupState)}
+                transition
+                sx={{ zIndex: 1100, width: '99%', top: '-43px !important', px: { xs: 1.25 } }}
+              >
                 {({ TransitionProps }) => (
                   <>
                     <Transitions type="zoom" {...TransitionProps}>

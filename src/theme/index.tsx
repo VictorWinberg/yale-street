@@ -22,7 +22,7 @@ import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
 
 // project imports
-import componentStyleOverrides from './compStyleOverride';
+import componentStyleOverrides from './componentStyleOverrides';
 import themePalette from './palette';
 import themeTypography from './typography';
 

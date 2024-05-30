@@ -279,7 +279,11 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: '6px' }} selected={selectedIndex === 4} onClick={handleLogout}>
+                        <ListItemButton
+                          sx={{ borderRadius: '6px' }}
+                          selected={selectedIndex === 4}
+                          onClick={handleLogout}
+                        >
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
