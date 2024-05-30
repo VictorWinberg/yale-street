@@ -3,17 +3,19 @@ import { Grid, TextField, Button, Box, Autocomplete } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 // third party
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 // project imports
 import { useCreateAssignment } from '../hooks/useAssignmentsMutations';
 import { Assignment } from '../api/assignmentsApi';
+import { useContacts } from '@/features/contacts/hooks/useContactsQueries';
 
 // ==============================|| NEW ASSIGNMENT PAGE ||============================== //
 
 const NewAssignment = () => {
+  const { data: contacts = [] } = useContacts();
   const { mutate: createAssignment } = useCreateAssignment();
-  const { register, handleSubmit } = useForm<Partial<Assignment>>();
+  const { register, control, handleSubmit } = useForm<Partial<Assignment>>();
 
   return (
     <>
@@ -27,7 +29,21 @@ const NewAssignment = () => {
             <TextField fullWidth label="Uppdragsnamn" type="text" margin="none" {...register('assignmentName')} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Uppdragsgivare" type="text" margin="none" {...register('contactId')} />
+            <Controller
+              name="responsiblePersonId"
+              control={control}
+              render={({ field }) => (
+                <Autocomplete
+                  options={contacts}
+                  getOptionKey={(option) => option.contactId}
+                  getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
+                  onChange={(_, value) => field.onChange(value ? value.contactId : undefined)}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Uppdragsgivare" variant="outlined" fullWidth />
+                  )}
+                />
+              )}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Autocomplete

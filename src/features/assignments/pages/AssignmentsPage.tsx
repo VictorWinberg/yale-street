@@ -16,13 +16,12 @@ import { Add } from '@mui/icons-material';
 
 const columns: GridColDef<Awaited<ReturnType<typeof fetchAssignments>>[number]>[] = [
   { field: 'assignmentName', headerName: 'Uppdragsnamn', editable: true },
-  { field: 'companyName', headerName: 'Bolag', editable: true },
-  { field: 'email', headerName: 'Email', editable: true },
+  { field: 'responsibleCompanyName', headerName: 'Bolag', editable: true },
+  { field: 'responsiblePersonEmail', headerName: 'Email', editable: true },
   {
-    field: 'responsible',
+    field: 'responsiblePersonName',
     headerName: 'Ansvarig',
-    sortable: false,
-    valueGetter: (_value, row) => `${row.assignmentName || ''}`
+    sortable: false
   },
   {
     field: 'status',
