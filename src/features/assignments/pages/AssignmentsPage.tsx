@@ -7,14 +7,14 @@ import { GridColDef } from '@mui/x-data-grid';
 // project imports
 import DataTable from '@/ui-component/DataTable';
 import { useAssignments } from '../hooks/useAssignmentsQueries';
+import { fetchAssignments } from '../api/assignmentsApi';
 
 // assets
 import { Add } from '@mui/icons-material';
 
 // ==============================|| ASSIGNMENTS PAGE ||============================== //
 
-type DataType = ReturnType<typeof useAssignments>['data'][number];
-const columns: GridColDef<DataType>[] = [
+const columns: GridColDef<Awaited<ReturnType<typeof fetchAssignments>>[number]>[] = [
   { field: 'assignmentName', headerName: 'Uppdragsnamn', editable: true },
   { field: 'companyName', headerName: 'Bolag', editable: true },
   { field: 'email', headerName: 'Email', editable: true },
@@ -46,7 +46,7 @@ const columns: GridColDef<DataType>[] = [
 ];
 
 const AssignmentsPage = () => {
-  const { data, isLoading } = useAssignments();
+  const { data = [], isLoading } = useAssignments();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -67,6 +67,8 @@ const AssignmentsPage = () => {
         columns={columns}
         getRowId={(row) => row.assignmentId}
         loading={isLoading}
+        autosizeOnMount
+        autosizeOptions={{ expand: true }}
         onRowClick={console.log}
         showActions
       />

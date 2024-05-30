@@ -29,10 +29,10 @@ async function init() {
 
 init();
 
-export function query<T extends Record<string, unknown>>(sql: string) {
+export function query<T extends Record<string, unknown>>(sql: string): T[] {
   const [res] = db.exec(sql);
   const result = res.values.map((value) => res.columns.reduce((acc, col, i) => ({ ...acc, [col]: value[i] }), {} as T));
-  return camelcaseKeys(result, { deep: true });
+  return camelcaseKeys(result, { deep: true }) as T[];
 }
 
 export function save() {

@@ -1,34 +1,7 @@
-import { query } from '@/api/DummyDB';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-// ==============================|| CONTACTS ||============================== //
+import { fetchContacts } from '../api/contactsApi';
 
-export type Contact = {
-  contactId: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  companyId: number;
-  position: string;
-  address: string;
-  notes: string;
-  lastInteractionDate: string; // ISO date string
+export const useContacts = () => {
+  return useQuery({ queryKey: ['contacts'], queryFn: fetchContacts });
 };
-
-const sql = `
-  SELECT * FROM contacts
-  LEFT JOIN companies USING (company_id)
-`;
-
-const useContacts = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
-
-  useEffect(() => {
-    setContacts(query(sql));
-  }, []);
-
-  return { data: contacts, isLoading: false };
-};
-
-export default useContacts;

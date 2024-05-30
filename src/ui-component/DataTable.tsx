@@ -39,7 +39,6 @@ const DataTable = ({ columns, rows, showActions, ...rest }: DataTableProps) => {
       apiRef={apiRef}
       columns={[...columns, ...actions]}
       rows={rows}
-      autoPageSize
       editMode="row"
       sx={{
         mx: -1,

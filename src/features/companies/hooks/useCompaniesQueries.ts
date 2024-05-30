@@ -1,30 +1,7 @@
-import { query } from '@/api/DummyDB';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-// ==============================|| COMPANIES ||============================== //
+import { fetchCompanies } from '../api/companiesApi';
 
-export type Company = {
-  companyId: number;
-  companyName: string;
-  address: string;
-  industry: string;
-  phone: string;
-  email: string;
-  website: string;
+export const useCompanies = () => {
+  return useQuery({ queryKey: ['companies'], queryFn: fetchCompanies });
 };
-
-const sql = `
-  SELECT * FROM companies
-`;
-
-const useCompanies = () => {
-  const [companies, setCompanies] = useState<Company[]>([]);
-
-  useEffect(() => {
-    setCompanies(query(sql));
-  }, []);
-
-  return { data: companies, isLoading: false };
-};
-
-export default useCompanies;

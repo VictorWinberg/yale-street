@@ -6,15 +6,15 @@ import { GridColDef } from '@mui/x-data-grid';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
-import useContacts from '../hooks/useContactsQueries';
+import { useContacts } from '../hooks/useContactsQueries';
+import { fetchContacts } from '../api/contactsApi';
 
 // assets
 import { Add } from '@mui/icons-material';
 
 // ==============================|| CONTACTS PAGE ||============================== //
 
-type DataType = ReturnType<typeof useContacts>['data'][number];
-const columns: GridColDef<DataType>[] = [
+const columns: GridColDef<Awaited<ReturnType<typeof fetchContacts>>[number]>[] = [
   {
     field: 'name',
     headerName: 'Namn',
@@ -27,7 +27,7 @@ const columns: GridColDef<DataType>[] = [
 ];
 
 const ContactsPage = () => {
-  const { data, isLoading } = useContacts();
+  const { data = [], isLoading } = useContacts();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -48,6 +48,8 @@ const ContactsPage = () => {
         columns={columns}
         getRowId={(row) => row.contactId}
         loading={isLoading}
+        autosizeOnMount
+        autosizeOptions={{ expand: true }}
         onRowClick={console.log}
         showActions
       />

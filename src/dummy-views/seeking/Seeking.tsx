@@ -60,7 +60,6 @@ const Seeking = () => {
   // Replace with real data fetching query library
   useEffect(() => {
     const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
       setData(fakeData);
       setIsLoading(false);
     };

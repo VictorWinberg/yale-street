@@ -6,15 +6,15 @@ import { GridColDef } from '@mui/x-data-grid';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
-import useCompanies from '../hooks/useCompaniesQueries';
+import { useCompanies } from '../hooks/useCompaniesQueries';
+import { fetchCompanies } from '../api/companiesApi';
 
 // assets
 import { Add } from '@mui/icons-material';
 
 // ==============================|| COMPANIES PAGE ||============================== //
 
-type DataType = ReturnType<typeof useCompanies>['data'][number];
-const columns: GridColDef<DataType>[] = [
+const columns: GridColDef<Awaited<ReturnType<typeof fetchCompanies>>[number]>[] = [
   { field: 'companyName', headerName: 'Bolagsnamn', editable: true },
   { field: 'address', headerName: 'Address', editable: true },
   { field: 'industry', headerName: 'Industri', editable: true },
@@ -23,7 +23,7 @@ const columns: GridColDef<DataType>[] = [
 ];
 
 const CompaniesPage = () => {
-  const { data, isLoading } = useCompanies();
+  const { data = [], isLoading } = useCompanies();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -44,6 +44,8 @@ const CompaniesPage = () => {
         columns={columns}
         getRowId={(row) => row.companyId}
         loading={isLoading}
+        autosizeOnMount
+        autosizeOptions={{ expand: true }}
         onRowClick={console.log}
         showActions
       />
