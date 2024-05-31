@@ -20,7 +20,7 @@ export function localStorageGet<T extends StorageValue>(name: string, defaultVal
 /**
  * Smartly writes value into localStorage
  */
-export function localStorageSet<T>(name: string, value: T) {
+export function localStorageSet<T extends StorageValue>(name: string, value: T) {
   if (typeof value === 'undefined') {
     return; // Do not store undefined values
   }

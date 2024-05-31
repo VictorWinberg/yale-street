@@ -1,7 +1,7 @@
 import initSqlJs, { SqlJsStatic, Database, SqlValue } from 'sql.js';
 import camelcaseKeys from 'camelcase-keys';
 
-import { localStorageSet, toSnakeCase } from '@/utils';
+import { hashCode, localStorageGet, localStorageSet, toSnakeCase } from '@/utils';
 
 import schema from './schema.sql?raw';
 import seed from './seed.sql?raw';
@@ -15,16 +15,25 @@ async function init() {
     locateFile: (file) => `https://sql.js.org/dist/${file}`
   });
 
-  // Load a database
-  const data = null; // TODO: Use localStorageGet<number[]>('db');
+  const schemaHash = hashCode(schema);
+  const storedHash = localStorageGet<number>('schemaHash', undefined);
+  const isSchemaChanged = schemaHash !== storedHash;
 
-  if (data) {
+  // Load a database
+  const data = localStorageGet<number[]>('db');
+
+  // Use cached data if schema is not changed
+  if (data && !isSchemaChanged) {
     db = new SQL.Database(data);
-  } else {
-    db = new SQL.Database();
-    db.run(schema);
-    db.run(seed);
+    return;
   }
+
+  db = new SQL.Database();
+  db.run(schema);
+  db.run(seed);
+
+  localStorageSet('schemaHash', schemaHash);
+  save();
 }
 
 init();
@@ -58,6 +67,8 @@ export const runParameterizedQuery = <T extends Record<string, SqlValue>>(table:
   const stmt = db.prepare(queryText);
   stmt.run(params);
   stmt.free(); // Free the memory used by the statement
+
+  save();
 };
 
 export function save() {
