@@ -1,62 +1,58 @@
+import { Link, useNavigate } from 'react-router-dom';
+
 // material-ui
-import { Grid, TextField, Button, Box, Autocomplete } from '@mui/material';
+import { Grid, TextField, Button, Box, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 // third party
-import { Formik } from 'formik';
+import { useForm } from 'react-hook-form';
 
 // project imports
+import { Company } from '../api/companiesApi';
+import { useCreateCompany } from '../hooks/useCompaniesMutations';
 
 // ==============================|| NEW COMPANY PAGE ||============================== //
 
 const NewCompany = () => {
+  const { mutate: createCompany } = useCreateCompany();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<Partial<Company>>();
+
+  const onSubmit = (data: Partial<Company>) => {
+    createCompany(data, {
+      onSuccess: () => {
+        navigate('..');
+      }
+    });
+  };
+
   return (
     <>
       <Typography variant="h4" color="primary">
         Lägg till företag
       </Typography>
       <Box sx={{ my: 1 }} />
-      <Formik initialValues={{}} onSubmit={console.log}>
-        {({ handleSubmit, isSubmitting }) => (
-          <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <TextField fullWidth label="Bolagsnamn" name="name" type="text" margin="none" />
-              </Grid>
-              <Grid item xs={12}>
-                <Autocomplete
-                  multiple
-                  options={DummyOrganisations}
-                  // MUI "key" prop bug: https://github.com/mui/material-ui/pull/42241
-                  renderInput={(params) => (
-                    <TextField {...params} label="Organisationsnummer" name="orgnr" type="text" />
-                  )}
-                  limitTags={2}
-                  disableCloseOnSelect
-                />
-              </Grid>
-            </Grid>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField fullWidth label="Bolagsnamn" type="text" margin="none" {...register('companyName')} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField fullWidth label="Address" type="text" margin="none" {...register('address')} />
+          </Grid>
+        </Grid>
 
-            <Box sx={{ mt: 3 }}>
-              <Button
-                disableElevation
-                disabled={isSubmitting}
-                fullWidth
-                size="large"
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
-                Spara
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
+        <Stack spacing={2} direction="row" sx={{ mt: 3 }}>
+          <Button size="large" type="submit" variant="contained" color="primary">
+            Spara
+          </Button>
+          <Button component={Link} size="large" variant="outlined" color="primary" to="..">
+            Avbryt
+          </Button>
+        </Stack>
+      </form>
     </>
   );
 };
-
-const DummyOrganisations = [{ label: '556036-0793' }, { label: '556036-0794' }, { label: '556036-0795' }];
 
 export default NewCompany;

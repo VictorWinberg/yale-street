@@ -1,4 +1,4 @@
-import { query } from '@/api/DummyDB';
+import { query, runParameterizedQuery } from '@/api/DummyDB';
 
 export type Contact = {
   contactId: number;
@@ -16,8 +16,19 @@ export type Contact = {
 };
 
 export const fetchContacts = async () => {
-  return await query<Contact>(`
-    SELECT * FROM contacts
-    LEFT JOIN companies USING (company_id)
+  return await query<
+    Contact & {
+      companyName: string;
+    }
+  >(`
+    SELECT
+      contacts.*,
+      c.company_name AS company_name
+    FROM contacts
+    LEFT JOIN companies c USING (company_id)
 `);
+};
+
+export const createContact = async (contact: Partial<Contact>) => {
+  await runParameterizedQuery('contacts', contact);
 };

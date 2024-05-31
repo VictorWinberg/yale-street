@@ -1,4 +1,4 @@
-import { query } from '@/api/DummyDB';
+import { query, runParameterizedQuery } from '@/api/DummyDB';
 
 export type Company = {
   companyId: number;
@@ -16,4 +16,8 @@ export const fetchCompanies = async () => {
   return await query<Company>(`
     SELECT * FROM companies
   `);
+};
+
+export const createCompany = async (company: Partial<Company>) => {
+  await runParameterizedQuery('companies', company);
 };
