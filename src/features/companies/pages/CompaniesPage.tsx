@@ -7,6 +7,7 @@ import { GridColDef } from '@mui/x-data-grid';
 // project imports
 import DataTable from '@/ui-component/DataTable';
 import { useCompanies } from '../hooks/useCompaniesQueries';
+import { useDeleteCompany, useUpdateCompany } from '../hooks/useCompaniesMutations';
 import { fetchCompanies } from '../api/companiesApi';
 
 // assets
@@ -24,6 +25,8 @@ const columns: GridColDef<Awaited<ReturnType<typeof fetchCompanies>>[number]>[] 
 
 const CompaniesPage = () => {
   const { data = [], isLoading } = useCompanies();
+  const { mutate: updateCompany } = useUpdateCompany();
+  const { mutate: deleteCompany } = useDeleteCompany();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -46,7 +49,13 @@ const CompaniesPage = () => {
         loading={isLoading}
         autosizeOnMount
         autosizeOptions={{ expand: true }}
-        onRowClick={console.log}
+        processRowUpdate={(row) => {
+          updateCompany(row);
+          return row;
+        }}
+        processRowDelete={(id) => {
+          deleteCompany(Number(id));
+        }}
         showActions
       />
     </Box>

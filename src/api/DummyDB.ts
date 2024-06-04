@@ -1,7 +1,16 @@
 import initSqlJs, { SqlJsStatic, Database, SqlValue } from 'sql.js';
 import camelcaseKeys from 'camelcase-keys';
 
-import { hashCode, localStorageGet, localStorageSet, toSnakeCase } from '@/utils';
+import {
+  generateColumns,
+  generatePlaceholders,
+  generateSetClause,
+  generateWhereClause,
+  hashCode,
+  localStorageGet,
+  localStorageSet,
+  mapParams
+} from '@/utils';
 
 import schema from './schema.sql?raw';
 import seed from './seed.sql?raw';
@@ -44,31 +53,54 @@ export function query<T extends Record<string, unknown>>(sql: string): T[] {
   return camelcaseKeys(result, { deep: true }) as T[];
 }
 
-export const runParameterizedQuery = <T extends Record<string, SqlValue>>(table: string, data: T) => {
-  const keys = Object.keys(data);
-  const values = Object.values(data);
+const executeQuery = (queryText: string, params: Record<string, SqlValue>) => {
+  const stmt = db.prepare(queryText);
+  stmt.run(params);
+  stmt.free(); // Free the memory used by the statement
+  save();
+};
 
-  const columns = keys.map((key) => `"${toSnakeCase(key)}"`).join(', ');
-  const placeholders = keys.map((key) => `:${key}`).join(', ');
+export const insertParameterizedQuery = <T extends Record<string, SqlValue>>(table: string, data: Partial<T>) => {
+  const columns = generateColumns(data);
+  const placeholders = generatePlaceholders(data);
 
   const queryText = `
     INSERT INTO ${table} (${columns})
     VALUES (${placeholders});
   `;
+  const params = mapParams(data);
+  executeQuery(queryText, params);
+};
 
-  const params = keys.reduce(
-    (acc, key, index) => {
-      acc[`:${key}`] = values[index];
-      return acc;
-    },
-    {} as Record<string, SqlValue>
-  );
+export const updateParameterizedQuery = <T extends Record<string, SqlValue>>(
+  table: string,
+  data: Partial<T>,
+  where: Partial<T>
+) => {
+  const setClause = generateSetClause(data);
+  const whereClause = generateWhereClause(where);
 
-  const stmt = db.prepare(queryText);
-  stmt.run(params);
-  stmt.free(); // Free the memory used by the statement
+  const queryText = `
+    UPDATE ${table}
+    SET ${setClause}
+    WHERE ${whereClause};
+  `;
+  const params = {
+    ...mapParams(data),
+    ...mapParams(where)
+  };
+  executeQuery(queryText, params);
+};
 
-  save();
+export const deleteParameterizedQuery = <T extends Record<string, SqlValue>>(table: string, where: Partial<T>) => {
+  const whereClause = generateWhereClause(where);
+
+  const queryText = `
+    DELETE FROM ${table}
+    WHERE ${whereClause};
+  `;
+  const params = mapParams(where);
+  executeQuery(queryText, params);
 };
 
 export function save() {

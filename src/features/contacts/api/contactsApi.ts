@@ -1,4 +1,5 @@
-import { query, runParameterizedQuery } from '@/api/DummyDB';
+import { deleteParameterizedQuery, query, insertParameterizedQuery, updateParameterizedQuery } from '@/api/DummyDB';
+import { pick } from '@/utils';
 
 export type Contact = {
   contactId: number;
@@ -30,5 +31,40 @@ export const fetchContacts = async () => {
 };
 
 export const createContact = async (contact: Partial<Contact>) => {
-  await runParameterizedQuery('contacts', contact);
+  await insertParameterizedQuery<Contact>(
+    'contacts',
+    pick(contact, [
+      'firstName',
+      'lastName',
+      'email',
+      'phone',
+      'companyId',
+      'position',
+      'address',
+      'notes',
+      'lastInteractionDate'
+    ])
+  );
+};
+
+export const updateContact = async (contact: Partial<Contact>) => {
+  await updateParameterizedQuery<Contact>(
+    'contacts',
+    pick(contact, [
+      'firstName',
+      'lastName',
+      'email',
+      'phone',
+      'companyId',
+      'position',
+      'address',
+      'notes',
+      'lastInteractionDate'
+    ]),
+    pick(contact, ['contactId'])
+  );
+};
+
+export const deleteContact = async (contactId: number) => {
+  await deleteParameterizedQuery<Contact>('contacts', { contactId });
 };

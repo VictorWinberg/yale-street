@@ -1,4 +1,5 @@
-import { query, runParameterizedQuery } from '@/api/DummyDB';
+import { deleteParameterizedQuery, insertParameterizedQuery, query, updateParameterizedQuery } from '@/api/DummyDB';
+import { pick } from '@/utils';
 
 export type Assignment = {
   assignmentId: number;
@@ -42,5 +43,36 @@ export const fetchAssignments = async () => {
 };
 
 export const createAssignment = async (assignment: Partial<Assignment>) => {
-  await runParameterizedQuery('assignments', assignment);
+  await insertParameterizedQuery<Assignment>(
+    'assignments',
+    pick(assignment, [
+      'assignmentName',
+      'responsiblePersonId',
+      'externalContactPersonId',
+      'relevantFiles',
+      'fee',
+      'type',
+      'status'
+    ])
+  );
+};
+
+export const updateAssignment = async (assignment: Partial<Assignment>) => {
+  await updateParameterizedQuery<Assignment>(
+    'assignments',
+    pick(assignment, [
+      'assignmentName',
+      'responsiblePersonId',
+      'externalContactPersonId',
+      'relevantFiles',
+      'fee',
+      'type',
+      'status'
+    ]),
+    pick(assignment, ['assignmentId'])
+  );
+};
+
+export const deleteAssignment = async (assignmentId: number) => {
+  await deleteParameterizedQuery<Assignment>('assignments', { assignmentId });
 };

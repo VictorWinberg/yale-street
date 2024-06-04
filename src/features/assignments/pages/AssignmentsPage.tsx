@@ -7,6 +7,7 @@ import { GridColDef } from '@mui/x-data-grid';
 // project imports
 import DataTable from '@/ui-component/DataTable';
 import { useAssignments } from '../hooks/useAssignmentsQueries';
+import { useDeleteAssignment, useUpdateAssignment } from '../hooks/useAssignmentsMutations';
 import { fetchAssignments } from '../api/assignmentsApi';
 
 // assets
@@ -46,6 +47,8 @@ const columns: GridColDef<Awaited<ReturnType<typeof fetchAssignments>>[number]>[
 
 const AssignmentsPage = () => {
   const { data = [], isLoading } = useAssignments();
+  const { mutate: updateAssignment } = useUpdateAssignment();
+  const { mutate: deleteAssignment } = useDeleteAssignment();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -68,7 +71,13 @@ const AssignmentsPage = () => {
         loading={isLoading}
         autosizeOnMount
         autosizeOptions={{ expand: true }}
-        onRowClick={console.log}
+        processRowUpdate={(row) => {
+          updateAssignment(row);
+          return row;
+        }}
+        processRowDelete={(id) => {
+          deleteAssignment(Number(id));
+        }}
         showActions
       />
     </Box>
