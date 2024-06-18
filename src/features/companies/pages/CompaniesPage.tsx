@@ -2,61 +2,56 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { Box, Button } from '@mui/material';
-import { GridColDef } from '@mui/x-data-grid';
+import { MRT_ColumnDef } from 'material-react-table';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
-import { useCompanies } from '../hooks/useCompaniesQueries';
-import { useDeleteCompany, useUpdateCompany } from '../hooks/useCompaniesMutations';
 import { fetchCompanies } from '../api/companiesApi';
+import { useCreateCompany, useDeleteCompany, useUpdateCompany } from '../hooks/useCompaniesMutations';
+import { useCompanies } from '../hooks/useCompaniesQueries';
 
 // assets
 import { Add } from '@mui/icons-material';
 
 // ==============================|| COMPANIES PAGE ||============================== //
 
-const columns: GridColDef<Awaited<ReturnType<typeof fetchCompanies>>[number]>[] = [
-  { field: 'companyName', headerName: 'Bolagsnamn', editable: true },
-  { field: 'address', headerName: 'Address', editable: true },
-  { field: 'industry', headerName: 'Industri', editable: true },
-  { field: 'website', headerName: 'Website', editable: true },
-  { field: 'updatedAt', headerName: 'Senast uppdaterad', headerAlign: 'right', align: 'right' }
+type DataType = Awaited<ReturnType<typeof fetchCompanies>>[number];
+const columns: MRT_ColumnDef<DataType>[] = [
+  { accessorKey: 'companyName', header: 'Bolagsnamn' },
+  { accessorKey: 'address', header: 'Address' },
+  { accessorKey: 'industry', header: 'Industri' },
+  { accessorKey: 'website', header: 'Website' },
+  { accessorKey: 'updatedAt', header: 'Senast uppdaterad' }
 ];
 
 const CompaniesPage = () => {
   const { data = [], isLoading } = useCompanies();
+  const { mutate: createCompany } = useCreateCompany();
   const { mutate: updateCompany } = useUpdateCompany();
   const { mutate: deleteCompany } = useDeleteCompany();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-      <Box>
-        <Button
-          component={Link}
-          to="new"
-          variant="outlined"
-          size="small"
-          startIcon={<Add />}
-          sx={{ textTransform: 'none' }}
-        >
-          Lägg till bolag
-        </Button>
-      </Box>
-      <DataTable
-        rows={data}
+      <DataTable<DataType>
+        data={data}
         columns={columns}
-        getRowId={(row) => row.companyId}
-        loading={isLoading}
-        autosizeOnMount
-        autosizeOptions={{ expand: true }}
-        processRowUpdate={(row) => {
-          updateCompany(row);
-          return row;
-        }}
-        processRowDelete={(id) => {
-          deleteCompany(Number(id));
-        }}
-        showActions
+        getRowId={(row) => `${row.companyId}`}
+        state={{ isLoading }}
+        onCreate={(row) => createCompany(row)}
+        onUpdate={(row) => updateCompany(row)}
+        onDelete={(row) => deleteCompany(row)}
+        renderTopToolbarCustomActions={() => (
+          <Button
+            component={Link}
+            to="new"
+            variant="outlined"
+            size="small"
+            startIcon={<Add />}
+            sx={{ textTransform: 'none' }}
+          >
+            Lägg till bolag
+          </Button>
+        )}
       />
     </Box>
   );

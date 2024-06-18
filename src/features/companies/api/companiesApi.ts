@@ -34,6 +34,6 @@ export const updateCompany = async (company: Partial<Company>) => {
   );
 };
 
-export const deleteCompany = async (companyId: number) => {
+export const deleteCompany = async ({ companyId }: Pick<Company, 'companyId'>) => {
   await deleteParameterizedQuery<Company>('companies', { companyId });
 };

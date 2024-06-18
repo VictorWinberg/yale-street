@@ -2,41 +2,37 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { Box, Button } from '@mui/material';
-import { GridColDef } from '@mui/x-data-grid';
+import { MRT_ColumnDef } from 'material-react-table';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
-import { useAssignments } from '../hooks/useAssignmentsQueries';
-import { useDeleteAssignment, useUpdateAssignment } from '../hooks/useAssignmentsMutations';
 import { fetchAssignments } from '../api/assignmentsApi';
+import { useCreateAssignment, useDeleteAssignment, useUpdateAssignment } from '../hooks/useAssignmentsMutations';
+import { useAssignments } from '../hooks/useAssignmentsQueries';
 
 // assets
 import { Add } from '@mui/icons-material';
 
 // ==============================|| ASSIGNMENTS PAGE ||============================== //
 
-const columns: GridColDef<Awaited<ReturnType<typeof fetchAssignments>>[number]>[] = [
-  { field: 'assignmentName', headerName: 'Uppdragsnamn', editable: true },
-  { field: 'responsibleCompanyName', headerName: 'Bolag', editable: true },
-  { field: 'responsiblePersonEmail', headerName: 'Email', editable: true },
+type DataType = Awaited<ReturnType<typeof fetchAssignments>>[number];
+const columns: MRT_ColumnDef<DataType>[] = [
+  { accessorKey: 'assignmentName', header: 'Uppdragsnamn' },
+  { accessorKey: 'responsibleCompanyName', header: 'Bolag' },
+  { accessorKey: 'responsiblePersonEmail', header: 'Email' },
   {
-    field: 'responsiblePersonName',
-    headerName: 'Ansvarig',
-    sortable: false
+    accessorKey: 'responsiblePersonName',
+    header: 'Ansvarig'
   },
   {
-    field: 'status',
-    headerName: 'Status',
-    sortable: false,
-    editable: true
+    accessorKey: 'status',
+    header: 'Status'
   },
   {
-    field: 'fee',
-    headerName: 'Arvode',
-    type: 'number',
-    editable: true,
-    renderCell: ({ value }) =>
-      Number(value).toLocaleString('sv-SE', {
+    accessorKey: 'fee',
+    header: 'Arvode',
+    Cell: ({ cell }) =>
+      cell.getValue<number>().toLocaleString('sv-SE', {
         style: 'currency',
         currency: 'SEK',
         minimumFractionDigits: 0,
@@ -47,38 +43,32 @@ const columns: GridColDef<Awaited<ReturnType<typeof fetchAssignments>>[number]>[
 
 const AssignmentsPage = () => {
   const { data = [], isLoading } = useAssignments();
+  const { mutate: createAssignment } = useCreateAssignment();
   const { mutate: updateAssignment } = useUpdateAssignment();
   const { mutate: deleteAssignment } = useDeleteAssignment();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-      <Box>
-        <Button
-          component={Link}
-          to="new"
-          variant="outlined"
-          size="small"
-          startIcon={<Add />}
-          sx={{ textTransform: 'none' }}
-        >
-          Lägg till uppdrag
-        </Button>
-      </Box>
-      <DataTable
-        rows={data}
+      <DataTable<DataType>
+        data={data}
         columns={columns}
-        getRowId={(row) => row.assignmentId}
-        loading={isLoading}
-        autosizeOnMount
-        autosizeOptions={{ expand: true }}
-        processRowUpdate={(row) => {
-          updateAssignment(row);
-          return row;
-        }}
-        processRowDelete={(id) => {
-          deleteAssignment(Number(id));
-        }}
-        showActions
+        getRowId={(row) => `${row.assignmentId}`}
+        state={{ isLoading }}
+        onCreate={(row) => createAssignment(row)}
+        onUpdate={(row) => updateAssignment(row)}
+        onDelete={(row) => deleteAssignment(row)}
+        renderTopToolbarCustomActions={() => (
+          <Button
+            component={Link}
+            to="new"
+            variant="outlined"
+            size="small"
+            startIcon={<Add />}
+            sx={{ textTransform: 'none' }}
+          >
+            Lägg till uppdrag
+          </Button>
+        )}
       />
     </Box>
   );
