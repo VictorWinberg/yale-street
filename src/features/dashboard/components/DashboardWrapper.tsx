@@ -3,6 +3,7 @@ import { Chip, Box, Typography, Grid, useTheme } from '@mui/material';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import FlexGrow from '@/ui-component/extended/FlexGrow';
 
 type TabItem = {
   id: string;
@@ -28,7 +29,7 @@ const DashboardWrapper = () => {
   const currentTab = tabItems.find((item) => pathname.startsWith(item.url)) || defaultTab;
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+    <FlexGrow>
       <Grid container alignItems="flex-start" justifyContent="space-between">
         <Grid item sm="auto">
           <Typography variant="h3" lineHeight={1.5} gutterBottom>
@@ -55,7 +56,7 @@ const DashboardWrapper = () => {
         </Grid>
       </Grid>
       <Outlet />
-    </Box>
+    </FlexGrow>
   );
 };
 

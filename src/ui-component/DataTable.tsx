@@ -12,6 +12,7 @@ import {
 } from 'material-react-table';
 import { MRT_Localization_SV } from 'material-react-table/locales/sv';
 import PopupState, { bindPopover, bindTrigger } from 'material-ui-popup-state';
+import { sxFlex } from './extended/FlexGrow';
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
@@ -57,10 +58,10 @@ const DataTable = <T extends Record<string, unknown>>(props: DataTableProps<T>) 
       table.setEditingRow(null);
     },
     muiTablePaperProps: {
-      sx: { display: 'flex', flexDirection: 'column', flexGrow: 1, boxShadow: 0 }
+      sx: { ...sxFlex, mx: -1, boxShadow: 0 }
     },
     muiTableContainerProps: {
-      sx: { flexGrow: 1, height: 0 }
+      sx: { ...sxFlex, height: '300px' }
     },
     muiTableBodyRowProps: ({ row, table }) => ({
       onDoubleClick: () => table.setEditingRow(table.getState().editingRow === row ? null : row)

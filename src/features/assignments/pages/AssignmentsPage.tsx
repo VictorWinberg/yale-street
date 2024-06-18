@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { MRT_ColumnDef } from 'material-react-table';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
+import FlexGrow from '@/ui-component/extended/FlexGrow';
 import { fetchAssignments } from '../api/assignmentsApi';
 import { useCreateAssignment, useDeleteAssignment, useUpdateAssignment } from '../hooks/useAssignmentsMutations';
 import { useAssignments } from '../hooks/useAssignmentsQueries';
@@ -48,7 +49,7 @@ const AssignmentsPage = () => {
   const { mutate: deleteAssignment } = useDeleteAssignment();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+    <FlexGrow>
       <DataTable<DataType>
         data={data}
         columns={columns}
@@ -70,7 +71,7 @@ const AssignmentsPage = () => {
           </Button>
         )}
       />
-    </Box>
+    </FlexGrow>
   );
 };
 

@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useForm } from 'react-hook-form';
 
 // project imports
+import ContentTabs from '@/ui-component/ContentTabs';
 import { Company } from '../api/companiesApi';
 import { useCreateCompany } from '../hooks/useCompaniesMutations';
 
@@ -39,6 +40,18 @@ const NewCompany = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField fullWidth label="Address" type="text" margin="none" {...register('address')} />
+          </Grid>
+
+          <Grid item xs={12}>
+            <ContentTabs
+              tabs={[
+                { label: 'Interaktioner', content: <>Interaktioner...</> },
+                { label: 'Kontakter', content: <>Kontakter...</> },
+                { label: 'Söker', content: <>Söker...</> },
+                { label: 'Uppdrag', content: <>Uppdrag...</> },
+                { label: 'KYC', content: <>KYC...</> }
+              ]}
+            />
           </Grid>
         </Grid>
 

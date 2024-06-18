@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
-import { Grid, TextField, Button, Box, Autocomplete, Stack } from '@mui/material';
+import { Autocomplete, Box, Button, Grid, Stack, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 // third party
@@ -9,13 +9,16 @@ import { Controller, useForm } from 'react-hook-form';
 
 // project imports
 import { useContacts } from '@/features/contacts/hooks/useContactsQueries';
+import ContentTabs from '@/ui-component/ContentTabs';
+import DataTable from '@/ui-component/DataTable';
+import FlexGrow, { sxFlex } from '@/ui-component/extended/FlexGrow';
 import { Assignment } from '../api/assignmentsApi';
 import { useCreateAssignment } from '../hooks/useAssignmentsMutations';
 
 // ==============================|| NEW ASSIGNMENT PAGE ||============================== //
 
 const NewAssignment = () => {
-  const { data: contacts = [] } = useContacts();
+  const { data: contacts = [], isLoading: contactsIsLoading } = useContacts();
   const { mutate: createAssignment } = useCreateAssignment();
   const navigate = useNavigate();
   const { register, control, handleSubmit } = useForm<Partial<Assignment>>();
@@ -34,7 +37,7 @@ const NewAssignment = () => {
         Lägg till uppdrag
       </Typography>
       <Box sx={{ my: 1 }} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} style={{ ...sxFlex }}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField fullWidth label="Uppdragsnamn" type="text" margin="none" {...register('assignmentName')} />
@@ -78,6 +81,34 @@ const NewAssignment = () => {
             <TextField fullWidth label="Arvode" margin="none" type="number" {...register('fee')} />
           </Grid>
         </Grid>
+
+        <Box sx={{ my: 1 }} />
+
+        <FlexGrow>
+          <ContentTabs
+            tabs={[
+              { label: 'Interaktioner', content: <>Interaktioner...</> },
+              { label: 'Dokument', content: <>Dokument...</> },
+              {
+                label: 'Intressenter',
+                content: (
+                  <DataTable
+                    data={contacts}
+                    getRowId={(row) => `${row.contactId}`}
+                    state={{ isLoading: contactsIsLoading }}
+                    columns={[
+                      { accessorKey: 'firstName', header: 'Förnamn' },
+                      { accessorKey: 'lastName', header: 'Efternamn' },
+                      { accessorKey: 'companyName', header: 'Bolag' }
+                    ]}
+                  />
+                )
+              },
+              { label: 'Moduler', content: <>Moduler...</> }
+            ]}
+            selected={2}
+          />
+        </FlexGrow>
 
         <Stack spacing={2} direction="row" sx={{ mt: 3 }}>
           <Button size="large" type="submit" variant="contained" color="primary">

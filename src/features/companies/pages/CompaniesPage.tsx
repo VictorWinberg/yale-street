@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { MRT_ColumnDef } from 'material-react-table';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
+import FlexGrow from '@/ui-component/extended/FlexGrow';
 import { fetchCompanies } from '../api/companiesApi';
 import { useCreateCompany, useDeleteCompany, useUpdateCompany } from '../hooks/useCompaniesMutations';
 import { useCompanies } from '../hooks/useCompaniesQueries';
@@ -31,7 +32,7 @@ const CompaniesPage = () => {
   const { mutate: deleteCompany } = useDeleteCompany();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+    <FlexGrow>
       <DataTable<DataType>
         data={data}
         columns={columns}
@@ -53,7 +54,7 @@ const CompaniesPage = () => {
           </Button>
         )}
       />
-    </Box>
+    </FlexGrow>
   );
 };
 

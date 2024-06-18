@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Controller, useForm } from 'react-hook-form';
 
 // project imports
+import ContentTabs from '@/ui-component/ContentTabs';
 import { useCompanies } from '@/features/companies/hooks/useCompaniesQueries';
 import { Contact } from '../api/contactsApi';
 import { useCreateContact } from '../hooks/useContactsMutations';
@@ -71,6 +72,15 @@ const NewContact = () => {
               renderInput={(params) => <TextField {...params} label="Utskick" name="dispatch" type="text" />}
               limitTags={2}
               disableCloseOnSelect
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <ContentTabs
+              tabs={[
+                { label: 'Interaktioner', content: <>Interaktioner...</> },
+                { label: 'Söker', content: <>Söker...</> }
+              ]}
             />
           </Grid>
         </Grid>
