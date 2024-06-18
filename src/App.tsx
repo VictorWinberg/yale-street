@@ -11,6 +11,7 @@ import NavigationScroll from '@/layout/NavigationScroll';
 import router from '@/routes';
 import StoreProvider from '@/store';
 import theme from '@/theme';
+import SnackbarProvider from './ui-component/SnackbarProvider';
 
 // ==============================|| APP ||============================== //
 
@@ -21,14 +22,16 @@ const App = () => {
     <ErrorBoundary name="App">
       <QueryClientProvider client={queryClient}>
         <StoreProvider>
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme()}>
-              <CssBaseline />
-              <NavigationScroll>
-                <RouterProvider router={router} />
-              </NavigationScroll>
-            </ThemeProvider>
-          </StyledEngineProvider>
+          <SnackbarProvider>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={theme()}>
+                <CssBaseline />
+                <NavigationScroll>
+                  <RouterProvider router={router} />
+                </NavigationScroll>
+              </ThemeProvider>
+            </StyledEngineProvider>
+          </SnackbarProvider>
         </StoreProvider>
         <ReactQueryDevtools initialIsOpen position="right" buttonPosition="bottom-right" />
       </QueryClientProvider>

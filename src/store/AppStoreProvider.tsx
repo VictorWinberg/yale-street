@@ -3,15 +3,6 @@ import { AppContextReturningType, AppStoreContext } from './AppStore';
 import AppStoreReducer from './AppStoreReducer';
 import { AppStoreState, INITIAL_APP_STORE_STATE } from './config';
 
-/**
- * Main global Store as HOC with React Context API
- *
- * import {AppStoreProvider} from './store'
- * ...
- * <AppStoreProvider>
- *   <App/>
- * </AppStoreProvider>
- */
 const AppStoreProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   // const tokenExists = Boolean(loadToken());
 

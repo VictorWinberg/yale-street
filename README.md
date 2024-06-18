@@ -23,14 +23,20 @@ This is a starter project utilizing Vite with React + MUI, leveraging TypeScript
 ├── assets                  # Static assets like images, fonts, etc.
 │   ├── images              # Image assets
 │   └── scss                # SCSS stylesheets
+├── features                # Feature based modules
+│   ├── xxx ...
+│   │   ├── api             # API service files
+│   │   ├── components      # Feature based components
+│   │   ├── hooks           # Custom hooks
+│   │   └── pages           # Feature based pages
+│   └── yyy ...
 ├── hooks                   # Custom React hooks
 ├── layout                  # Contains layout components
 ├── routes                  # Route configuration files
 ├── store                   # Store configuration files
 ├── theme                   # Theme configuration files
 ├── ui-component            # Reusable UI components
-├── utils                   # Utility functions and helpers
-└── views                   # View components for different pages
+└── utils                   # Utility functions and helpers
 ```
 
 ## Available Scripts
