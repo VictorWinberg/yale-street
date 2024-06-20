@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 // material-ui
 import { Box, Button, Card, CardActions, CardContent, IconButton, Popover, Tooltip, Typography } from '@mui/material';
 
@@ -25,18 +27,30 @@ interface DataTableProps<T extends Record<string, unknown>> extends MRT_TableOpt
   onDelete?: (row: T) => void;
 }
 
-const DataTable = <T extends Record<string, unknown>>(props: DataTableProps<T>) => {
+interface CustomProps<T extends Record<string, unknown>> {
+  editDisplayMode: MRT_TableOptions<T>['editDisplayMode'];
+  setEditDisplayMode: (mode: MRT_TableOptions<T>['editDisplayMode']) => void;
+}
+
+const DataTable = <T extends Record<string, unknown>>({
+  editDisplayMode: _editDisplayMode = 'row',
+  ...props
+}: DataTableProps<T>) => {
+  const [editDisplayMode, setEditDisplayMode] = useState<MRT_TableOptions<T>['editDisplayMode']>(_editDisplayMode);
+  const custom: CustomProps<T> = { editDisplayMode, setEditDisplayMode };
+
   const table = useMaterialReactTable<T>({
-    createDisplayMode: 'row', // ('modal', and 'custom' are also available)
-    editDisplayMode: 'row', // ('modal', 'cell', 'table', and 'custom' are also available)
+    createDisplayMode: 'modal', // ('modal', and 'custom' are also available)
+    editDisplayMode, // ('modal', 'cell', 'table', and 'custom' are also available)
     layoutMode: 'grid',
     enableEditing: true,
+    enableRowActions: true,
+    enableColumnActions: false,
     enableStickyHeader: true,
     enableColumnFilters: false,
     enableHiding: false,
     enableDensityToggle: false,
     enableFullScreenToggle: false,
-    enableColumnActions: false,
     defaultColumn: {
       size: 120, // default 180
       minSize: 40, // default 40
@@ -46,16 +60,18 @@ const DataTable = <T extends Record<string, unknown>>(props: DataTableProps<T>) 
       'mrt-row-actions': { minSize: 120, size: 120, maxSize: 120, grow: false }
     },
     localization: MRT_Localization_SV,
-    renderRowActions: RowActions<T>(props),
+    renderRowActions: RowActions<T>(props, custom),
     positionActionsColumn: 'last',
     renderTopToolbarCustomActions: CustomActions<T>(),
     onCreatingRowSave: async ({ row, values, table }) => {
       await props.onCreate?.({ ...row.original, ...values } as T);
       table.setCreatingRow(null);
+      setEditDisplayMode(_editDisplayMode);
     },
     onEditingRowSave: async ({ row, values, table }) => {
       await props.onUpdate?.({ ...row.original, ...values } as T);
       table.setEditingRow(null);
+      setEditDisplayMode(_editDisplayMode);
     },
     muiTablePaperProps: {
       sx: { ...sxFlex, mx: -1, boxShadow: 0 }
@@ -64,27 +80,22 @@ const DataTable = <T extends Record<string, unknown>>(props: DataTableProps<T>) 
       sx: { ...sxFlex, height: '300px' }
     },
     muiTableBodyRowProps: ({ row, table }) => ({
-      onDoubleClick: () => table.setEditingRow(table.getState().editingRow === row ? null : row)
+      onDoubleClick: () => {
+        setEditDisplayMode('row');
+        table.setEditingRow(table.getState().editingRow === row ? null : row);
+      }
     }),
-    // muiToolbarAlertBannerProps: isLoadingUsersError
-    //   ? {
-    //       color: 'error',
-    //       children: 'Error loading data'
-    //     }
-    //   : undefined,
     ...props
   });
 
   return <MaterialReactTable table={table} />;
 };
 
-export default DataTable;
-
-const RowActions = <T extends MRT_RowData>(props: DataTableProps<T>) => {
+const RowActions = <T extends MRT_RowData>(props: DataTableProps<T>, custom: CustomProps<T>) => {
   return ({ row, table }: { row: MRT_Row<T>; table: MRT_TableInstance<T> }) => (
     <Box sx={{ display: 'flex', gap: '1rem' }}>
       <Tooltip title="Edit">
-        <IconButton onClick={() => table.setEditingRow(row)}>
+        <IconButton onClick={() => [table.setEditingRow(row), custom.setEditDisplayMode('modal')]}>
           <EditIcon />
         </IconButton>
       </Tooltip>
@@ -151,3 +162,5 @@ const CustomActions = <T extends MRT_RowData>() => {
     </IconButton>
   );
 };
+
+export default DataTable;
