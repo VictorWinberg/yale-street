@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { Button } from '@mui/material';
-import { MRT_ColumnDef } from 'material-react-table';
+import { Button, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { MRT_ColumnDef, MRT_EditActionButtons } from 'material-react-table';
 
 // project imports
 import DataTable from '@/ui-component/DataTable';
 import FlexGrow from '@/ui-component/extended/FlexGrow';
 import { fetchContacts } from '../api/contactsApi';
+import ContactForm from '../components/ContactForm';
 import { useCreateContact, useDeleteContact, useUpdateContact } from '../hooks/useContactsMutations';
 import { useContacts } from '../hooks/useContactsQueries';
 
@@ -18,12 +19,12 @@ import { Add } from '@mui/icons-material';
 
 type DataType = Awaited<ReturnType<typeof fetchContacts>>[number];
 const columns: MRT_ColumnDef<DataType>[] = [
-  { accessorKey: 'firstName', header: 'Förnamn' },
-  { accessorKey: 'lastName', header: 'Efternamn' },
-  { accessorKey: 'companyName', header: 'Bolag' },
+  { accessorKey: 'contactName', header: 'Namn' },
+  { accessorKey: 'jobTitle', header: 'Befattning' },
+  { accessorKey: 'companyName', header: 'Bolag', enableEditing: false },
   { accessorKey: 'email', header: 'Email' },
   { accessorKey: 'phone', header: 'Telefonnummer' },
-  { accessorKey: 'updatedAt', header: 'Senast uppdaterad' }
+  { accessorKey: 'updatedAt', header: 'Senast uppdaterad', enableEditing: false }
 ];
 
 const ContactsPage = () => {
@@ -53,6 +54,26 @@ const ContactsPage = () => {
           >
             Lägg till kontakt
           </Button>
+        )}
+        renderEditRowDialogContent={({ row, table }) => (
+          <>
+            <DialogTitle variant="h4" color="primary">
+              Redigera kontakt
+            </DialogTitle>
+            <DialogContent>
+              <ContactForm
+                sx={{ mt: 1 }}
+                formProps={{ values: row.original }}
+                onChange={(values) => {
+                  //@ts-expect-error any
+                  row._valuesCache = values;
+                }}
+              />
+            </DialogContent>
+            <DialogActions>
+              <MRT_EditActionButtons row={row} table={table} variant="text" />
+            </DialogActions>
+          </>
         )}
       />
     </FlexGrow>

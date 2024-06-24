@@ -15,12 +15,11 @@ CREATE TABLE IF NOT EXISTS assignments (
 
 CREATE TABLE IF NOT EXISTS contacts (
     contact_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
+    contact_name VARCHAR(255),
     email VARCHAR(255),
     phone VARCHAR(20),
+    job_title VARCHAR(100),
     company_id INTEGER,
-    position VARCHAR(100),
     address VARCHAR(255),
     notes TEXT,
     last_interaction_date DATE,

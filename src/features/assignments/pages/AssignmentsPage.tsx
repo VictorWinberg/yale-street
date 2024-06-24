@@ -20,11 +20,12 @@ import { Add } from '@mui/icons-material';
 type DataType = Awaited<ReturnType<typeof fetchAssignments>>[number];
 const columns: MRT_ColumnDef<DataType>[] = [
   { accessorKey: 'assignmentName', header: 'Uppdragsnamn' },
-  { accessorKey: 'responsibleCompanyName', header: 'Bolag' },
-  { accessorKey: 'responsiblePersonEmail', header: 'Email' },
+  { accessorKey: 'responsibleCompanyName', header: 'Bolag', enableEditing: false },
+  { accessorKey: 'responsiblePersonEmail', header: 'Email', enableEditing: false },
   {
     accessorKey: 'responsiblePersonName',
-    header: 'Ansvarig'
+    header: 'Ansvarig',
+    enableEditing: false
   },
   {
     accessorKey: 'status',
@@ -73,7 +74,9 @@ const AssignmentsPage = () => {
         )}
         renderEditRowDialogContent={({ row, table }) => (
           <>
-            <DialogTitle sx={{ textAlign: 'center' }}>Redigera uppdrag</DialogTitle>
+            <DialogTitle variant="h4" color="primary">
+              Redigera uppdrag
+            </DialogTitle>
             <DialogContent>
               <AssignmentForm
                 sx={{ mt: 1 }}

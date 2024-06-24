@@ -27,10 +27,10 @@ export const fetchAssignments = async () => {
   >(`
     SELECT
       assignments.*,
-      (rp.first_name || ' ' || rp.last_name) AS responsible_person_name,
+      (rp.contact_name) AS responsible_person_name,
       rp.email AS responsible_person_email,
       rc.company_name AS responsible_company_name,
-      (ecp.first_name || ' ' || ecp.last_name) AS external_contact_person_name,
+      (ecp.contact_name) AS external_contact_person_name,
       ecp.email AS external_contact_person_email,
       ec.company_name AS external_company_name
     FROM assignments

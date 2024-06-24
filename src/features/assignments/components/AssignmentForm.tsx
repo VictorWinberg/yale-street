@@ -13,7 +13,7 @@ import { Assignment } from '../api/assignmentsApi';
 
 // ==============================|| ASSIGNMENT FORM ||============================== //
 
-interface AssignmentFormProps extends BoxProps {
+interface AssignmentFormProps extends Omit<BoxProps, 'onChange' | 'onSubmit'> {
   onSubmit?: (data: Partial<Assignment>) => void;
   onChange?: (data: Partial<Assignment>) => void;
   formProps?: UseFormProps<Partial<Assignment>>;
@@ -43,7 +43,8 @@ const AssignmentForm = ({ onSubmit = () => {}, onChange, formProps, children, ..
                 <Autocomplete
                   options={contacts}
                   getOptionKey={(option) => option.contactId}
-                  getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
+                  getOptionLabel={(option) => option.contactName}
+                  value={contacts.find((contact) => contact.contactId === field.value) || null}
                   onChange={(_, value) => field.onChange(value ? value.contactId : undefined)}
                   renderInput={(params) => (
                     <TextField {...params} label="Uppdragsgivare" variant="outlined" fullWidth />

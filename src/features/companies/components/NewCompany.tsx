@@ -1,25 +1,25 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
-import { Grid, TextField, Button, Box, Stack } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 // third party
-import { useForm } from 'react-hook-form';
 
 // project imports
 import ContentTabs from '@/ui-component/ContentTabs';
+import FlexGrow from '@/ui-component/extended/FlexGrow';
 import { Company } from '../api/companiesApi';
 import { useCreateCompany } from '../hooks/useCompaniesMutations';
+import CompanyForm from './CompanyForm';
 
 // ==============================|| NEW COMPANY PAGE ||============================== //
 
 const NewCompany = () => {
   const { mutate: createCompany } = useCreateCompany();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<Partial<Company>>();
 
-  const onSubmit = (data: Partial<Company>) => {
+  const handleSubmit = (data: Partial<Company>) => {
     createCompany(data, {
       onSuccess: () => {
         navigate('..');
@@ -33,27 +33,20 @@ const NewCompany = () => {
         Lägg till företag
       </Typography>
       <Box sx={{ my: 1 }} />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Bolagsnamn" type="text" margin="none" {...register('companyName')} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Address" type="text" margin="none" {...register('address')} />
-          </Grid>
+      <CompanyForm onSubmit={handleSubmit}>
+        <Box sx={{ my: 1 }} />
 
-          <Grid item xs={12}>
-            <ContentTabs
-              tabs={[
-                { label: 'Interaktioner', content: <>Interaktioner...</> },
-                { label: 'Kontakter', content: <>Kontakter...</> },
-                { label: 'Söker', content: <>Söker...</> },
-                { label: 'Uppdrag', content: <>Uppdrag...</> },
-                { label: 'KYC', content: <>KYC...</> }
-              ]}
-            />
-          </Grid>
-        </Grid>
+        <FlexGrow>
+          <ContentTabs
+            tabs={[
+              { label: 'Interaktioner', content: <>Interaktioner...</> },
+              { label: 'Kontakter', content: <>Kontakter...</> },
+              { label: 'Söker', content: <>Söker...</> },
+              { label: 'Uppdrag', content: <>Uppdrag...</> },
+              { label: 'KYC', content: <>KYC...</> }
+            ]}
+          />
+        </FlexGrow>
 
         <Stack spacing={2} direction="row" sx={{ mt: 3 }}>
           <Button size="large" type="submit" variant="contained" color="primary">
@@ -63,7 +56,7 @@ const NewCompany = () => {
             Avbryt
           </Button>
         </Stack>
-      </form>
+      </CompanyForm>
     </>
   );
 };

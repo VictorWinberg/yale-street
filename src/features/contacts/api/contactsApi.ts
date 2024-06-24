@@ -3,10 +3,10 @@ import { pick } from '@/utils';
 
 export type Contact = {
   contactId: number;
-  firstName: string;
-  lastName: string;
+  contactName: string;
   email: string;
   phone: string;
+  jobTitle: string;
   companyId: number;
   position: string;
   address: string;
@@ -34,10 +34,10 @@ export const createContact = async (contact: Partial<Contact>) => {
   await insertParameterizedQuery<Contact>(
     'contacts',
     pick(contact, [
-      'firstName',
-      'lastName',
+      'contactName',
       'email',
       'phone',
+      'jobTitle',
       'companyId',
       'position',
       'address',
@@ -51,10 +51,10 @@ export const updateContact = async (contact: Partial<Contact>) => {
   await updateParameterizedQuery<Contact>(
     'contacts',
     pick(contact, [
-      'firstName',
-      'lastName',
+      'contactName',
       'email',
       'phone',
+      'jobTitle',
       'companyId',
       'position',
       'address',

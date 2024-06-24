@@ -6,11 +6,11 @@ VALUES
     ('123 Industries', '789 Oak St, Anothertown', 'Manufacturing', '555-555-5555', 'info@123industries.com', 'http://www.123industries.com', '2024-05-26', '2024-05-26');
 
 -- Seed data for contacts table
-INSERT INTO contacts (first_name, last_name, email, phone, company_id, position, address, notes, last_interaction_date, created_at, updated_at)
+INSERT INTO contacts (contact_name, email, phone, company_id, job_title, address, notes, last_interaction_date, created_at, updated_at)
 VALUES
-    ('John', 'Doe', 'john.doe@abccorp.com', '123-456-7890', 1, 'CEO', '123 Main St, Anytown', 'Main contact person', '2024-05-28', '2024-05-28', '2024-05-28'),
-    ('Jane', 'Smith', 'jane.smith@xyzltd.com', '987-654-3210', 2, 'CFO', '456 Elm St, Othertown', 'Finance department', '2024-05-27', '2024-05-27', '2024-05-27'),
-    ('Alice', 'Johnson', 'alice.johnson@123industries.com', '555-555-5555', 3, 'Engineer', '789 Oak St, Anothertown', 'Technical contact', '2024-05-26', '2024-05-26', '2024-05-26');
+    ('John Doe', 'john.doe@abccorp.com', '123-456-7890', 1, 'CEO', '123 Main St, Anytown', 'Main contact person', '2024-05-28', '2024-05-28', '2024-05-28'),
+    ('Jane Smith', 'jane.smith@xyzltd.com', '987-654-3210', 2, 'CFO', '456 Elm St, Othertown', 'Finance department', '2024-05-27', '2024-05-27', '2024-05-27'),
+    ('Alice Johnson', 'alice.johnson@123industries.com', '555-555-5555', 3, 'Engineer', '789 Oak St, Anothertown', 'Technical contact', '2024-05-26', '2024-05-26', '2024-05-26');
 
 -- Seed data for assignments table
 INSERT INTO assignments (assignment_name, responsible_person_id, external_contact_person_id, relevant_files, fee, type, status, created_at, updated_at)

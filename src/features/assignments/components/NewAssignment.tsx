@@ -52,8 +52,7 @@ const NewAssignment = () => {
                     getRowId={(row) => `${row.contactId}`}
                     state={{ isLoading: contactsIsLoading }}
                     columns={[
-                      { accessorKey: 'firstName', header: 'Förnamn' },
-                      { accessorKey: 'lastName', header: 'Efternamn' },
+                      { accessorKey: 'contactName', header: 'Namn' },
                       { accessorKey: 'companyName', header: 'Bolag' }
                     ]}
                   />
@@ -64,6 +63,7 @@ const NewAssignment = () => {
             selected={2}
           />
         </FlexGrow>
+
         <Stack spacing={2} direction="row" sx={{ mt: 3 }}>
           <Button size="large" type="submit" variant="contained" color="primary">
             Spara
