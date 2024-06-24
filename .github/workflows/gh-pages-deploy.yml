@@ -50,3 +50,5 @@ jobs:
           FOLDER: dist
           CLEAN: true
           CLEAN-EXCLUDE: preview
+          GIT-CONFIG-NAME: github-actions[bot]
+          GIT-CONFIG-EMAIL: github-actions[bot]@users.noreply.github.com

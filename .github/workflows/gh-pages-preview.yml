@@ -48,6 +48,8 @@ jobs:
           CLEAN: true
           COMMIT-MESSAGE: 'Deploy preview for PR #${{ github.event.number }} 🚀'
           TARGET-FOLDER: preview/${{ github.event.number }}
+          GIT-CONFIG-NAME: github-actions[bot]
+          GIT-CONFIG-EMAIL: github-actions[bot]@users.noreply.github.com
 
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
