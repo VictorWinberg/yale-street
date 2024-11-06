@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/yale-street/static/css/main.0f6eb3d8.css",
-    "main.js": "/yale-street/static/js/main.dbc05211.js",
+    "main.js": "/yale-street/static/js/main.eb59b3dd.js",
     "static/js/48.787d96b1.chunk.js": "/yale-street/static/js/48.787d96b1.chunk.js",
+    "static/media/street.jpeg": "/yale-street/static/media/street.add96048385944efe300.jpeg",
     "index.html": "/yale-street/index.html",
     "main.0f6eb3d8.css.map": "/yale-street/static/css/main.0f6eb3d8.css.map",
-    "main.dbc05211.js.map": "/yale-street/static/js/main.dbc05211.js.map",
+    "main.eb59b3dd.js.map": "/yale-street/static/js/main.eb59b3dd.js.map",
     "48.787d96b1.chunk.js.map": "/yale-street/static/js/48.787d96b1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0f6eb3d8.css",
-    "static/js/main.dbc05211.js"
+    "static/js/main.eb59b3dd.js"
   ]
 }
