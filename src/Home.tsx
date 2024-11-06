@@ -28,6 +28,7 @@ type Message = {
 
 export const Home = () => {
   const [locked, setLocked] = useState(false);
+  const [owner, setOwner] = useState(false);
   const { updateUsername } = useUser();
 
   const [messages, setMessages] = useState<Message[]>([]);
@@ -61,7 +62,7 @@ export const Home = () => {
         sx={{ position: "absolute", top: "1em", right: "1em" }}
       >
         <Badge badgeContent={messages.length} color="error">
-          <NotificationsIcon />
+          <NotificationsIcon sx={{ textShadow: "2px 2px 4px #000000" }} />
         </Badge>
       </IconButton>
 
@@ -88,14 +89,22 @@ export const Home = () => {
         )}
       </Box>
 
+      <Button variant="contained" onClick={() => command("DISARM")}>
+        DISARM
+      </Button>
+
       {/* Alarm and Disarm Buttons */}
-      <Button variant="contained" onClick={() => command("ALARM")}>
+      {/* <Button variant="contained" onClick={() => command("ALARM")}>
         ALARM
       </Button>
       <Button variant="contained" onClick={() => command("DISARM")}>
         DISARM
-      </Button>
-      <Button variant="contained" onClick={() => updateUsername("")}>
+      </Button> */}
+      <Button
+        sx={{ position: "absolute", bottom: "1em" }}
+        variant="contained"
+        onClick={() => updateUsername("")}
+      >
         Logout
       </Button>
 
@@ -114,7 +123,14 @@ export const Home = () => {
         }}
       >
         <Box p={2}>
-          <Typography variant="h6">Issues</Typography>
+          <Typography
+            component={Button}
+            variant="h6"
+            onClick={() => setOwner((prev) => !prev)}
+            sx={{ color: "black" }}
+          >
+            {owner ? "Issues" : "Neighbors"}
+          </Typography>
           <List>
             {messages.map((message, index) => (
               <ListItem key={index}>
